@@ -7,6 +7,7 @@ if (process.env.NODE_ENV === "development") {
   baseurl = "http://team2.eaglesoftwareteam.com:8081/";
 }
 
+
 const apiClient = axios.create({
   baseURL: baseurl,
   headers: {
@@ -48,4 +49,5 @@ export default {
   updateCourse(courseNo, course) {
     return apiClient.put("/courses/" + courseNo, course);
   }
+
 };

@@ -1,12 +1,14 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import listPage from '../views/listPage.vue'
 import listEntryPage from '../views/listEntryPage.vue'
+import mainmenu from '../views/mainmenu.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'listPage',
-    component: listPage
+
+    name: 'menu',
+    component: mainmenu
   },
   {
     path: '/add',
@@ -18,6 +20,12 @@ const routes = [
     name: 'edit',
     props: true,
     component: listEntryPage
+
+  },
+  {
+    path: '/listPage',
+    name: 'listPage',
+    component: listPage
   }
 ]
 
