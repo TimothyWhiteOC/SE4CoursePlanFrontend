@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Course Planning</h1>
+    <h1>Admin Page</h1>
     <router-view />
   </div>
 </template>

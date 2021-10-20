@@ -1,20 +1,17 @@
 <template>
 
 
-  <div class="courseDisp">
+  <div class="studentDisp">
     
-   <!-- -->
+    <span>{{student.studentNo}} {{student.name}} </span>
 
-    <span>{{course.courseNo}} {{course.name}} </span>
-
-    <router-link :to="{ name: 'edit' , params: { courseNo: course.courseNo }}">
-      <button>edit</button>
+    <router-link :to="{ name: 'edit' , params: { studentNo: student.studentNo }}">
+    <button>edit</button>
     </router-link>
 
-    <button v-on:click="deleteCourse()"><span>delete</span></button>
+    <button v-on:click="deleteStudent()"><span>delete</span></button>
     <br>
     <br>
-
   </div>
     
 
@@ -23,7 +20,7 @@
 </template>
 
 <script>
-import CourseServices from "@/services/CourseServices.js";
+import CourseServices from "@/services/StudentServices.js";
 export default {
   name: 'ListEntry',
   props: {
@@ -78,7 +75,7 @@ a {
   width: 70px;
     cursor: pointer;
 }
-.courseDisp {
+.studentDisp {
  /* padding: 10px; */
   margin-top: 20px;
   margin-bottom: 10px;

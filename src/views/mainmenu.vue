@@ -6,6 +6,9 @@
      <router-link :to="{ name: 'listPage'}"><button>Search for Course</button></router-link>
       <course-display v-for="course in courses" :key="course.courseNo" :course="course" />
 
+     <router-link :to="{ name: ''}"><button>Search for Students</button></router-link>
+      <course-display v-for="course in courses" :key="course.courseNo" :course="course" />
+
 
   </div>
 </template>
