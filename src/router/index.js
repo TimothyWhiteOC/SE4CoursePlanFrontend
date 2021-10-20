@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import listPage from '../views/listPage.vue'
 import listEntryPage from '../views/listEntryPage.vue'
 import mainmenu from '../views/mainmenu.vue'
+import listStudent from '../views/listStudent.vue'
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     path: '/listPage',
     name: 'listPage',
     component: listPage
+  },
+  {
+    path: '/listStudent',
+    name: 'listStudent',
+    component: listStudent
   }
 ]
 

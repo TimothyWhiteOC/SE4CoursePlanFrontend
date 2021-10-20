@@ -32,20 +32,20 @@ const apiClient = axios.create({
 });
 
 export default {
-  getCourses() {
+  getStudents() {
     return apiClient.get("/students/");
   },
-  getCourse(courseNo) {
+  getStudent(studentID) {
     return apiClient.get("/students/" + studentID);
   },
-  deleteCourse(courseNo) {
-    return apiClient.delete("/courses/" + studentID);
+  deleteStudent(studentID) {
+    return apiClient.delete("/students/" + studentID);
   },
-  addCourse(course) {
-    console.log(course);
-    return apiClient.post("/courses/", student);
+  addStudent(student) {
+    console.log(student);
+    return apiClient.post("/students/", student);
   },
-  updateCourse(courseNo, course) {
-    return apiClient.put("/courses/" + studentID, student);
+  updateStudent(studentID, student) {
+    return apiClient.put("/students/" + studentID, student);
   }
 };
