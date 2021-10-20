@@ -4,7 +4,7 @@ var baseurl = "";
 if (process.env.NODE_ENV === "development") {
   baseurl = "http://localhost:8081";
 } else {
-  baseurl = "http://team2.eaglesoftwareteam.com:8081/";
+  baseurl = "http://team2.eaglesoftwareteam.com:8081";
 }
 
 const apiClient = axios.create({
@@ -32,19 +32,19 @@ const apiClient = axios.create({
 });
 
 export default {
-  getStudents() {
-    return apiClient.get("/students/");
+  getStudentCourses(studentID) {
+    return apiClient.get("/students/" + studentID + "/courses");
   },
-  getStudents(studentID) {
-    return apiClient.get("/students/" + studentID);
+  getStudentCourse(studentID, courseNo) {
+    return apiClient.get("/students/" + studentID + "/courses/" + courseNo);
   },
-  deleteStudent(studentID) {
-    return apiClient.delete("/students/" + studentID);
+  deleteStudentCourse(studentID, courseNo) {
+    return apiClient.delete("/students/" + studentID + "/courses/" + courseNo);
   },
-  addCourse(student) {
-    return apiClient.post("/students/", student);
+  addStudentCourse(studentID, sCourse) {
+    return apiClient.post("/students/" + studentID + "/courses/", sCourse);
   },
-  updateCourse(studentID, student) {
-    return apiClient.put("/students/" + studentID, student);
+  updateStudentCourse(studentID, courseNo, sCourse) {
+    return apiClient.put("/students/" + studentID + "/courses/", sCourse);
   }
 };
