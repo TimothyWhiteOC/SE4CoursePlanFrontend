@@ -1,20 +1,17 @@
 <template>
 
 
-  <div class="courseDisp">
+  <div class="studentDisp">
     
-   <!-- -->
+    <span>{{student.studentID}} {{student.fName}} </span>
 
-    <span>{{course.courseNo}} {{course.name}} </span>
-
-    <router-link :to="{ name: 'edit' , params: { courseNo: course.courseNo }}">
-      <button>edit</button>
+    <router-link :to="{ name: 'edit' , params: { studentID: student.studentID }}">
+    <button>edit</button>
     </router-link>
 
-    <button v-on:click="deleteCourse()"><span>delete</span></button>
+    <button v-on:click="deleteStudent()"><span>delete</span></button>
     <br>
     <br>
-
   </div>
     
 
@@ -23,21 +20,20 @@
 </template>
 
 <script>
-import CourseServices from "@/services/CourseServices.js";
+import StudentServices from "@/services/StudentServices.js";
 export default {
   name: 'ListEntry',
   props: {
-    course: Object
+    student: Object
   },
   methods: {
-    deleteCourse(){
-      // from https://www.vuemastery.com/courses/touring-vue-router/in-component-route-guards
+    deleteStudent(){
       const answer = window.confirm(
-        'Sure you wanna delete ' + this.course.name + '? It\'ll be gone forever!'
+        'Sure you wanna delete ' + this.student.fName + '? It\'ll be gone forever!'
       )
       if (answer) {
         
-        CourseServices.deleteCourse(this.course.courseNo); // <-- Confirm delete
+        StudentServices.deleteStudent(this.student.studentID); // <-- Confirm delete
         // https://stackoverflow.com/questions/40445125/how-can-component-delete-itself-in-vue-2-0
         this.$delete;
         this.$el.parentNode.removeChild(this.$el);
@@ -78,7 +74,7 @@ a {
   width: 70px;
     cursor: pointer;
 }
-.courseDisp {
+.studentDisp {
  /* padding: 10px; */
   margin-top: 20px;
   margin-bottom: 10px;

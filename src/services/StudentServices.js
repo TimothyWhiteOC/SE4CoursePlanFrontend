@@ -35,16 +35,18 @@ export default {
   getStudents() {
     return apiClient.get("/students/");
   },
-  getStudents(studentID) {
+
+  getStudent(studentID) {
     return apiClient.get("/students/" + studentID);
   },
   deleteStudent(studentID) {
     return apiClient.delete("/students/" + studentID);
   },
-  addCourse(student) {
+  addStudent(student) {
     return apiClient.post("/students/", student);
   },
-  updateCourse(studentID, student) {
+  updateStudent(studentID, student) {
+
     return apiClient.put("/students/" + studentID, student);
   }
 };
