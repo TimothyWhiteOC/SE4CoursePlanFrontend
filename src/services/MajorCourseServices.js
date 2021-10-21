@@ -40,5 +40,5 @@ export default {
   },
   addMajorCourse(majorID, majorCourse) {
     return apiClient.post("/degrees/" + majorID + "/courses/", majorCourse);
-  },
+  }
 };

@@ -7,7 +7,6 @@ import listStudent from '../views/listStudent.vue'
 const routes = [
   {
     path: '/',
-
     name: 'menu',
     component: mainmenu
   },
@@ -21,7 +20,6 @@ const routes = [
     name: 'edit',
     props: true,
     component: listEntryPage
-
   },
   {
     path: '/listPage',
@@ -32,6 +30,12 @@ const routes = [
     path: '/listStudent',
     name: 'listStudent',
     component: listStudent
+  },
+  {
+    path: '/students/:studentID/degreeAudit',
+    name: 'degreeAudit',
+    props: true,
+    component: degreeAuditPage
   }
 ]
 

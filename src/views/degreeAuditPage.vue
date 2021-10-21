@@ -13,21 +13,31 @@
 
 <script>
 
-import CourseServices from '@/services/CourseServices.js'
+import StudentCourseServices from '@/services/StudentCourseServices.js';
+import MajorCourseServices from '@/services/MajorCourseServices.js';
 import CourseDisplay from '../components/CourseDisplay.vue';
 export default {
   components: { CourseDisplay },
+  props: ['studentID'],
   data() {
     return {
       studentCourses: [],
-      degreePlan: {},
-      
+      studentMajorID: null,
+      majorCourses: []
     };
   },
   created() {
-    CourseServices.getCourses()
+    StudentCourseServices.getStudentCourses(studentID)
       .then(response => {
-        this.courses = response.data
+        this.studentCourses = response.data
+      })
+      .catch(error => {
+        console.log('There was an error:', error.response)
+      })
+
+    MajorCourseServices.getMajorCourses(studentMajorID)
+      .then(response => {
+        this.majorCourses = response.data
       })
       .catch(error => {
         console.log('There was an error:', error.response)
