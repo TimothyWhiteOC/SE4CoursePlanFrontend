@@ -5,7 +5,7 @@
 
    <!-- <button v-on:click= "cancel">Cancel</button>-->
 
-    <course-display v-for="course in filteredCourses" :key="course.courseNo" :course="course" /> 
+  <degree-audit-course v-for="mCourse in majorCourses" :key="mCourse.courseNo" :course="mCourse" /> 
 
   </div>
 </template>
@@ -15,7 +15,8 @@
 
 import StudentCourseServices from '@/services/StudentCourseServices.js';
 import MajorCourseServices from '@/services/MajorCourseServices.js';
-import CourseDisplay from '../components/CourseDisplay.vue';
+import StudentServices from '@/services/StudentServices.js';
+import DegreeAuditCourse from '../components/DegreeAuditCourse.vue';
 export default {
   components: { CourseDisplay },
   props: ['studentID'],
@@ -27,6 +28,13 @@ export default {
     };
   },
   created() {
+    StudentServices.getStudent(studentID)
+      .then(response => {
+        this.studentMajorID = response.data.majorID;
+      })
+      .catch(error => {
+        console.log('There was an error:', error.response)
+      })
     StudentCourseServices.getStudentCourses(studentID)
       .then(response => {
         this.studentCourses = response.data
