@@ -5,7 +5,7 @@
 
    <!-- <button v-on:click= "cancel">Cancel</button>-->
 
-  <degree-audit-course v-for="mCourse in majorCourses" :key="mCourse.courseNo" :course="mCourse" /> 
+  <degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :course="course"/> 
 
   </div>
 </template>
@@ -18,26 +18,30 @@ import MajorCourseServices from '@/services/MajorCourseServices.js';
 import StudentServices from '@/services/StudentServices.js';
 import DegreeAuditCourse from '../components/DegreeAuditCourse.vue';
 export default {
-  components: { CourseDisplay },
+  components: { DegreeAuditCourse },
   props: ['studentID'],
   data() {
     return {
-      studentCourses: [],
-      studentMajorID: null,
-      majorCourses: []
+      // https://stackoverflow.com/questions/58721689/how-to-v-model-for-array-of-objects
+      auditCourses: []
     };
   },
   created() {
+    var studentCourses = {};
+    var sCourse;
+    var studentMajorID;
+    var majorCourses = {};
+
     StudentServices.getStudent(studentID)
       .then(response => {
-        this.studentMajorID = response.data.majorID;
+        studentMajorID = response.data.majorID;
       })
       .catch(error => {
         console.log('There was an error:', error.response)
       })
     StudentCourseServices.getStudentCourses(studentID)
       .then(response => {
-        this.studentCourses = response.data
+        studentCourses = response.data
       })
       .catch(error => {
         console.log('There was an error:', error.response)
@@ -45,11 +49,23 @@ export default {
 
     MajorCourseServices.getMajorCourses(studentMajorID)
       .then(response => {
-        this.majorCourses = response.data
+        majorCourses = response.data
       })
       .catch(error => {
         console.log('There was an error:', error.response)
       })
+    // https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
+    // https://www.w3docs.com/snippets/javascript/how-to-append-an-item-to-an-array-in-javascript.html
+    for (mCourse in majorCourses) {
+      sCourse = {};
+      
+      this.auditCourses.push(
+        {
+          majorCourse: mCourse,
+          studentCourse: sCourse
+        }
+      );
+    }
   },
   methods: {
     cancel() {
