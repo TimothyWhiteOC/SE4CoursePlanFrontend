@@ -5,7 +5,7 @@
 
    <!-- <button v-on:click= "cancel">Cancel</button>-->
 
-  <degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :course="course"/> 
+  <degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> 
 
   </div>
 </template>
@@ -23,14 +23,16 @@ export default {
   data() {
     return {
       // https://stackoverflow.com/questions/58721689/how-to-v-model-for-array-of-objects
-      auditCourses: []
+      semesters: [],
+      currCourseNo: string
     };
   },
   created() {
     var studentCourses = {};
-    var sCourse;
+    var currCourse = {};
     var studentMajorID;
     var majorCourses = {};
+    var semester = {};
 
     StudentServices.getStudent(studentID)
       .then(response => {
@@ -56,13 +58,21 @@ export default {
       })
     // https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
     // https://www.w3docs.com/snippets/javascript/how-to-append-an-item-to-an-array-in-javascript.html
-    for (mCourse in majorCourses) {
-      sCourse = {};
-      
-      this.auditCourses.push(
+    for (sCourse in studentCourses) {
+      currentCourseNo = sCourse.courseNo;
+
+
+      // sCourse = {};
+      // https://www.w3schools.com/jsref/jsref_find.asp
+      // sCourse = studentCourses.find(getCreditedCourse);
+      // https://www.w3docs.com/snippets/javascript/how-to-remove-an-element-from-an-array-in-javascript.html
+      this.semesters.push(
         {
-          majorCourse: mCourse,
-          studentCourse: sCourse
+          term = sCourse.term,
+          year = sCourse.year,
+          gpa = "",
+          totalHours = 0,
+          courses  = {}
         }
       );
     }
@@ -117,6 +127,14 @@ export default {
         .save(`${this.heading}.pdf`);
     }
   }
+}
+
+function  getCreditedCourse(courseNo) {
+  return courseNo == this.currentCourseNo;
+}
+
+function  getSemesterExists(courseNo) {
+  return courseNo == this.currentCourseNo;
 }
 </script>
 

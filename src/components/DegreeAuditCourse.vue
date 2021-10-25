@@ -5,11 +5,11 @@
     
    <!---->
 
-    <span>Requirement: {{majorCourse.courseNo}} {{majorCourse.name}} </span>
+    <span>Requirement: {{auditCourse.majorCourse.courseNo}} {{auditCourse.majorCourse.name}} </span>
 
     <br>
-    <span v-if: studentCourse> 
-      Complted Semester: {{studentCourse.semTerm}}{{studentCourse.semYear}}     Grade: {{studentCourse.grade}}
+    <span v-if: auditCourse.studentCourse> 
+      Complted Semester: {{auditCourse.studentCourse.semTerm}}{{studentCourse.semYear}}     Grade: {{auditCourse.studentCourse.grade}}
     </span>
     <br>
 
@@ -25,8 +25,7 @@ import CourseServices from "@/services/CourseServices.js";
 export default {
   name: 'ListEntry',
   props: {
-    majorCourse: Object,
-    studentCourse: Object
+    auditCourse: Object
   }  
 }
 </script>
