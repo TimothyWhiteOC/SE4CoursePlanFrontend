@@ -1,37 +1,49 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import listPage from '../views/listPage.vue'
-import listEntryPage from '../views/listEntryPage.vue'
-import mainmenu from '../views/mainmenu.vue'
-import listStudent from '../views/listStudent.vue'
+import listCourses from '../views/listCourses.vue'
+import courseEditEntry from '../views/courseEditEntry.vue'
+import studentEditEntry from '../views/studentEditEntry.vue'
+import adminmenu from '../views/adminmenu.vue'
+import listStudents from '../views/listStudents.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/adminmenu',
 
-    name: 'menu',
-    component: mainmenu
+    name: 'adminmenu',
+    component: adminmenu
   },
   {
-    path: '/add',
-    name: 'add',
-    component: listEntryPage
+    path: '/courseAdd',
+    name: 'courseAdd',
+    component: courseEditEntry
   },
   {
-    path: '/edit/:courseNo',
-    name: 'edit',
+    path: '/studentAdd',
+    name: 'studentAdd',
+    component: studentEditEntry
+  },
+  {
+    path: '/editCourse/:courseNo',
+    name: 'editCourse',
     props: true,
-    component: listEntryPage
+    component: courseEditEntry
 
   },
   {
-    path: '/listPage',
-    name: 'listPage',
-    component: listPage
+    path: '/editStudent/:studentID',
+    name: 'editStudent',
+    props: true,
+    component: studentEditEntry
   },
   {
-    path: '/listStudent',
-    name: 'listStudent',
-    component: listStudent
+    path: '/listCourses',
+    name: 'listCourses',
+    component: listCourses
+  },
+  {
+    path: '/listStudents',
+    name: 'listStudents',
+    component: listStudents
   }
 ]
 

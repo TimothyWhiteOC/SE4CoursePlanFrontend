@@ -81,7 +81,7 @@ export default {
       this.course.courseNo = this.courseID;
       CourseServices.addCourse(this.course)
         .then(() => {
-          this.$router.push({ name: 'listPage' })
+          this.$router.push({ name: 'listCourses' })
         })
         .catch(error => {
           this.message = error.message;
@@ -91,7 +91,7 @@ export default {
     updateCourse() {
       CourseServices.updateCourse(this.courseNo, this.course)
         .then(() => {
-          this.$router.push({ name: 'listPage' })
+          this.$router.push({ name: 'listCourses' })
         })
         .catch(error => {
           this.message = error.message
@@ -99,7 +99,7 @@ export default {
         })
     },
     cancel() {
-      this.$router.push({ name: 'menu' });
+      this.$router.push({ name: 'adminmenu' });
     }
   }
 }

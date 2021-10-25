@@ -1,36 +1,43 @@
 <template>
 
 
-  <div class="studentDisp">
+  <div class="courseDisp">
     
-    <span>{{student.studentID}} {{student.fName}} </span>
+   <!-- -->
 
-    <router-link :to="{ name: 'editStudent' , params: { studentID: student.studentID }}"> 
-    <button>edit</button>
-    </router-link>
+    <span>{{course.courseNo}} {{course.name}} </span>
 
-    <button v-on:click="deleteStudent()"><span>delete</span></button>
+   <router-link :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
+      <button>edit</button>
+    </router-link> 
+
+    <button v-on:click="deleteCourse()"><span>delete</span></button>
     <br>
     <br>
+
   </div>
+    
+
+
 
 </template>
 
 <script>
-import StudentServices from "@/services/StudentServices.js";
+import CourseServices from "@/services/CourseServices.js";
 export default {
   name: 'ListEntry',
   props: {
-    student: Object
+    course: Object
   },
   methods: {
-    deleteStudent(){
+    deleteCourse(){
+      // from https://www.vuemastery.com/courses/touring-vue-router/in-component-route-guards
       const answer = window.confirm(
-        'Sure you wanna delete ' + this.student.fName + '? It\'ll be gone forever!'
+        'Sure you wanna delete ' + this.course.name + '? It\'ll be gone forever!'
       )
       if (answer) {
         
-        StudentServices.deleteStudent(this.student.studentID); // <-- Confirm delete
+        CourseServices.deleteCourse(this.course.courseNo); // <-- Confirm delete
         // https://stackoverflow.com/questions/40445125/how-can-component-delete-itself-in-vue-2-0
         this.$delete;
         this.$el.parentNode.removeChild(this.$el);
@@ -71,7 +78,7 @@ a {
   width: 70px;
     cursor: pointer;
 }
-.studentDisp {
+.courseDisp {
  /* padding: 10px; */
   margin-top: 20px;
   margin-bottom: 10px;
@@ -104,10 +111,9 @@ button:hover {
   background-color: #e0a606; /* Green */
   color: white;
 }
-/*https://stackoverflow.com/questions/1367409/how-to-make-button-look-like-a-link*/
 </style>
 
-
+<!--dont include ID itll just make one -->
 
 
 

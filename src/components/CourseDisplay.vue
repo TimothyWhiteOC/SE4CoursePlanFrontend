@@ -7,9 +7,9 @@
 
     <span>{{course.courseNo}} {{course.name}} </span>
 
-    <router-link :to="{ name: 'edit' , params: { courseNo: course.courseNo }}">
+   <router-link :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
       <button>edit</button>
-    </router-link>
+    </router-link> 
 
     <button v-on:click="deleteCourse()"><span>delete</span></button>
     <br>

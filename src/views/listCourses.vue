@@ -39,13 +39,14 @@ export default {
       return this.courses.filter((course) => {
         return course.name.match(this.search);
       });
+    }
   },
   methods: {
         cancel() {
-        this.$router.push({ name: 'menu' });
+        this.$router.push({ name: 'adminmenu' });
       }
     }
-  }
+  
 
 }
 </script>
