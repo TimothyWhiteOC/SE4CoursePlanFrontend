@@ -24,14 +24,16 @@ export default {
     return {
       // https://stackoverflow.com/questions/58721689/how-to-v-model-for-array-of-objects
       semesters: [],
-      currCourseNo: string
+      currCourseNo: string,
+      majorCred: 0
     };
   },
   created() {
     var studentCourses = {};
-    var currCourse = {};
     var studentMajorID;
     var majorCourses = {};
+    var mCourse = {};
+    var semesterChrono = {};
     var semester = {};
 
     StudentServices.getStudent(studentID)
@@ -58,14 +60,45 @@ export default {
       })
     // https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
     // https://www.w3docs.com/snippets/javascript/how-to-append-an-item-to-an-array-in-javascript.html
+    
+    for (sCourse in studentCourses) {
+      semesterChrono = {
+        year = sCourse.semYear,
+        term = sCourse.semTerm
+      };
+      semester = semesters.find(getSemesterExists, semesterChrono);
+      if (!semester) {
+        semester = {
+          semTerm = sCourse.semTerm,
+          semYear = sCourse.semTerm,
+          GPA = 0,
+          hoursTotal = 0,
+          courses = []
+        };
+      }
+    }
+
+    semesters.sort(function(a, b) 
+      {
+        
+
+        return 0;
+      }
+    );
+    
     for (sCourse in studentCourses) {
       currentCourseNo = sCourse.courseNo;
-
+      // sort, then iterate through, change semester when new semester
+      // iterate through, get all semester
+      // filter
 
       // sCourse = {};
       // https://www.w3schools.com/jsref/jsref_find.asp
       // sCourse = studentCourses.find(getCreditedCourse);
       // https://www.w3docs.com/snippets/javascript/how-to-remove-an-element-from-an-array-in-javascript.html
+      semester = {};
+      semester = semesters.find(getSemesterExists);
+      if ()
       this.semesters.push(
         {
           term = sCourse.term,
@@ -129,11 +162,16 @@ export default {
   }
 }
 
-function  getCreditedCourse(courseNo) {
+function getCreditedCourse(courseNo) {
   return courseNo == this.currentCourseNo;
 }
 
-function  getSemesterExists(courseNo) {
+function getSemesterExists(semester) {
+  return (semster.semTerm === this.term && semster.year === this.semYear);
+}
+
+// https://www.w3schools.com/jsref/jsref_sort.asp
+function a(courseNo) {
   return courseNo == this.currentCourseNo;
 }
 </script>
