@@ -32,10 +32,10 @@ const routes = [
     component: listStudent
   },
   {
-    path: '/students/:studentID/degreeAudit',
-    name: 'degreeAudit',
+    path: '/students/:studentID/coursePlan',
+    name: 'coursePlan',
     props: true,
-    component: degreeAuditPage
+    component: courseplanPage
   }
 ]
 

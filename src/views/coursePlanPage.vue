@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h2>Degree Audit</h2>   
+    <h2>Course Plan</h2>   
     <br>
+    <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
 
-   <!-- <button v-on:click= "cancel">Cancel</button>-->
+    <!-- <button v-on:click= "cancel">Cancel</button>-->
 
-  <degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> 
+  <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
 
   </div>
 </template>
@@ -16,25 +17,29 @@
 import StudentCourseServices from '@/services/StudentCourseServices.js';
 import MajorCourseServices from '@/services/MajorCourseServices.js';
 import StudentServices from '@/services/StudentServices.js';
-import DegreeAuditCourse from '../components/DegreeAuditCourse.vue';
+import CourseServices from '@/services/CourseServices.js';
+
+import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
+import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
 export default {
-  components: { DegreeAuditCourse },
+  components: { DegreeAuditCourseCorPlanSemesterDisplay },
   props: ['studentID'],
   data() {
     return {
       // https://stackoverflow.com/questions/58721689/how-to-v-model-for-array-of-objects
       semesters: [],
-      currCourseNo: string,
+      totalHours: 0,
       majorCred: 0
     };
   },
   created() {
     var studentCourses = {};
     var studentMajorID;
-    var majorCourses = {};
-    var mCourse = {};
     var semesterChrono = {};
     var semester = {};
+    var majorCourses = {};
+    var curCourse = {};
+
 
     StudentServices.getStudent(studentID)
       .then(response => {
@@ -70,21 +75,56 @@ export default {
       if (!semester) {
         semester = {
           semTerm = sCourse.semTerm,
-          semYear = sCourse.semTerm,
+          semYear = sCourse.semYear,
+          semStartDate = {},
           GPA = 0,
-          hoursTotal = 0,
+          semHours = 0,
+          semMajorHours = 0,
           courses = []
         };
+        semesters.push(semester);
+      }
+
+      CourseServices.getCourse(studentsCourse.courseNo)
+      .then(response => {
+        curCourse =  response.data
+      })
+      .catch(error => {
+        console.log('There was an error:', error.response)
+      })
+      
+      semester.courses.push(
+        {
+          // load all the necessarydata here from sCourse and currCourse
+          dept = currCourse.dept,
+          courseNo = sCourse.courseNo,
+          desc = currCourse.description,
+          grade = sCourse.grade
+        }
+      );
+      semester.semHours += curCourse.hours;
+      if (majorCourses.find(getCreditedCourse, sCourse)) {
+        semester.semMajorHours += curCourse.hours;
       }
     }
 
-    semesters.sort(function(a, b) 
+    /*
+    // add the sort later
+     semesters.sort(function(a, b) 
       {
-        
+        if a.
 
         return 0;
       }
     );
+
+    // calculate all necessary values;
+    gpa
+    */
+   
+    
+    /*
+    // so, this was old
     
     for (sCourse in studentCourses) {
       currentCourseNo = sCourse.courseNo;
@@ -108,7 +148,7 @@ export default {
           courses  = {}
         }
       );
-    }
+    } */
   },
   methods: {
     cancel() {
