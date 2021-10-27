@@ -10,6 +10,7 @@
 
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
+    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :semester="course"/>
     <br>
 
   </div>
@@ -20,8 +21,11 @@
 </template>
 
 <script>
+import StudentCourseDisplay from '../components/StudentCourseDisplay.vue';
+
 export default {
   name: 'CorPlanSemesterDisplay',
+  components: { StudentCourseDisplay },
   props: {
     semester: Object
   },

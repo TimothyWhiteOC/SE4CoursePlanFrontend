@@ -18,7 +18,6 @@
 import StudentCourseServices from '@/services/StudentCourseServices.js';
 import MajorCourseServices from '@/services/MajorCourseServices.js';
 import StudentServices from '@/services/StudentServices.js';
-import CourseServices from '@/services/CourseServices.js';
 
 import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
 
@@ -35,15 +34,12 @@ export default {
       student: {}
     };
   },
-  created() {
+  async created() {
     var studentCourses = {};
-    var semesterChrono = {};
     var semester = {};
     var majorCourses = {};
-    var curCourse = {};
 
-    console.log(this.studentID);
-    StudentServices.getStudent(this.studentID)
+    await StudentServices.getStudent(this.studentID)
       .then(response => {
         this.student = response.data[0]
       })
@@ -51,7 +47,7 @@ export default {
         console.log('There was an error:', error.response)
       })
     
-    StudentCourseServices.getStudentCourses(this.studentID)
+    await StudentCourseServices.getStudentCourses(this.studentID)
       .then(response => {
         studentCourses = response.data
       })
@@ -60,7 +56,9 @@ export default {
       })
 
     
-    MajorCourseServices.getMajorCourses(this.student.majorID)
+    console.log(studentCourses);
+    
+    await MajorCourseServices.getMajorCourses(this.student.majorID)
       .then(response => {
         majorCourses = response.data
       })
@@ -73,17 +71,12 @@ export default {
     // https://eslint.org/docs/rules/no-undef
 
     // https://www.delftstack.com/howto/javascript/javascript-declare-empty-array/
-    for (var sCourse in studentCourses) {
-      semesterChrono = {
-        year: sCourse.semYear,
-        term: sCourse.semTerm
-      };
-      semester = this.semesters.find(getSemesterExists, semesterChrono);
+    for (var sCourse of studentCourses) {
+      semester = this.semesters.find(getSemesterExists, sCourse);
       if (!semester) {
         semester = {
           semTerm: sCourse.semTerm,
           semYear: sCourse.semYear,
-          semStartDate: {},
           GPA: 0,
           semHours: 0,
           semMajorHours: 0,
@@ -91,29 +84,15 @@ export default {
         };
         this.semesters.push(semester);
       }
-
-      CourseServices.getCourse(sCourse.courseNo)
-      .then(response => {
-        curCourse =  response.data
-      })
-      .catch(error => {
-        console.log('There was an error:', error.response)
-      })
       
-      semester.courses.push(
-        {
-          // load all the necessarydata here from sCourse and currCourse
-          dept: curCourse.dept,
-          courseNo: sCourse.courseNo,
-          desc: curCourse.description,
-          grade: sCourse.grade
-        }
-      );
-      semester.semHours += curCourse.hours;
-      this.totalHours += curCourse.hours;
+      semester.courses.push(sCourse);
+      semester.semHours += sCourse.hours;
+      this.totalHours += sCourse.hours;
+      
+      console.log("h " + sCourse.hours);
       if (majorCourses.find(getCreditedCourse, sCourse)) {
-        semester.semMajorHours += curCourse.hours;
-        this.totalMajorHours += curCourse.hours;
+        semester.semMajorHours += sCourse.hours;
+        this.totalMajorHours += sCourse.hours;
       }
     }
 
@@ -216,6 +195,7 @@ function getCreditedCourse(courseNo) {
 }
 
 function getSemesterExists(semester) {
+  
   return (semester.semTerm === this.term && semester.year === this.semYear);
 }
 

@@ -2,17 +2,9 @@
 
 
   <div class="courseDisp">
-    
-   <!---->
-
-    <span>Requirement: {{auditCourse.majorCourse.courseNo}} {{auditCourse.majorCourse.name}} </span>
-
     <br>
-    <span v-if: auditCourse.studentCourse> 
-      Complted Semester: {{auditCourse.studentCourse.semTerm}}{{studentCourse.semYear}}     Grade: {{auditCourse.studentCourse.grade}}
-    </span>
+    {{name}}    Course No. {{courseNo}}   {{hours}} Hours     Grade: {{grade}}
     <br>
-
   </div>
     
 
@@ -21,9 +13,8 @@
 </template>
 
 <script>
-import CourseServices from "@/services/CourseServices.js";
 export default {
-  name: 'ListEntry',
+  name: 'StudentCourseDisplay',
   props: {
     course: Object
   }  
