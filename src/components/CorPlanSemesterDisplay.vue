@@ -7,10 +7,6 @@
 
     <span> Semester     {{semester.semTerm}}      {{semester.semYear}} </span>
     <span>    Hours: {{semester.semHours}}    Major Hours: {{semester.semMajorHours}}     GPA: {{semester.GPA}} </span>
-  
-    <router-link :to="{ name: 'edit' , params: { courseNo: course.courseNo }}">
-      <button>edit</button>
-    </router-link>
 
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>

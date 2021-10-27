@@ -31,25 +31,26 @@ export default {
       // https://www.delftstack.com/howto/javascript/javascript-declare-empty-array/
       semesters: [],
       totalHours: 0,
-      totalMajorHours: 0
+      totalMajorHours: 0,
+      student: {}
     };
   },
   created() {
     var studentCourses = {};
-    var studentMajorID;
     var semesterChrono = {};
     var semester = {};
     var majorCourses = {};
     var curCourse = {};
 
-
+    console.log(this.studentID);
     StudentServices.getStudent(this.studentID)
       .then(response => {
-        studentMajorID = response.data.majorID;
+        this.student = response.data[0]
       })
       .catch(error => {
         console.log('There was an error:', error.response)
       })
+    
     StudentCourseServices.getStudentCourses(this.studentID)
       .then(response => {
         studentCourses = response.data
@@ -58,7 +59,8 @@ export default {
         console.log('There was an error:', error.response)
       })
 
-    MajorCourseServices.getMajorCourses(studentMajorID)
+    
+    MajorCourseServices.getMajorCourses(this.student.majorID)
       .then(response => {
         majorCourses = response.data
       })
@@ -85,7 +87,7 @@ export default {
           GPA: 0,
           semHours: 0,
           semMajorHours: 0,
-          courses: []
+          courses: new Array()
         };
         this.semesters.push(semester);
       }

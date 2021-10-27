@@ -33,7 +33,7 @@ const routes = [
     component: listStudent
   },
   {
-    path: '/students/:studentID/coursePlan',
+    path: '/coursePlan/:studentID',
     name: 'coursePlan',
     props: true,
     component: coursePlan
