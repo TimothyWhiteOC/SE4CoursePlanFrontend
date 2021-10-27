@@ -17,7 +17,10 @@ export default {
   name: 'StudentCourseDisplay',
   props: {
     course: Object
-  }  
+  },
+  created() {
+    console.log(this.course);
+  }
 }
 </script>
 

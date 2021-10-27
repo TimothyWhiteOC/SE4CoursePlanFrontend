@@ -54,9 +54,6 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-
-    
-    console.log(studentCourses);
     
     await MajorCourseServices.getMajorCourses(this.student.majorID)
       .then(response => {
@@ -72,8 +69,13 @@ export default {
 
     // https://www.delftstack.com/howto/javascript/javascript-declare-empty-array/
     for (var sCourse of studentCourses) {
-      semester = this.semesters.find(getSemesterExists, sCourse);
-      if (!semester) {
+      // semester = this.semesters.find(getSemesterExists, sCourse);
+      /*semester = this.semesters.find(getSemesterExists, {
+        semTerm: "no",
+        semYear: 1909
+      });*/
+      console.log("S: " + semester);
+      if (!compareTerm(semester, sCourse)) {
         semester = {
           semTerm: sCourse.semTerm,
           semYear: sCourse.semYear,
@@ -84,12 +86,10 @@ export default {
         };
         this.semesters.push(semester);
       }
-      
       semester.courses.push(sCourse);
       semester.semHours += sCourse.hours;
       this.totalHours += sCourse.hours;
       
-      console.log("h " + sCourse.hours);
       if (majorCourses.find(getCreditedCourse, sCourse)) {
         semester.semMajorHours += sCourse.hours;
         this.totalMajorHours += sCourse.hours;
@@ -194,10 +194,14 @@ function getCreditedCourse(courseNo) {
   return courseNo == this.currentCourseNo;
 }
 
-function getSemesterExists(semester) {
-  
-  return (semester.semTerm === this.term && semester.year === this.semYear);
+function compareTerm(a, b) {
+  return ((a.semTerm === b.semTerm) && (a.semYear === b.semYear));
 }
+
+/*
+function getSemesterExists(semester) {
+  return (semester.semTerm === this.semTerm && semester.year === this.semYear);
+}*/
 
 // https://www.w3schools.com/jsref/jsref_sort.asp
 /*function a(courseNo) {
