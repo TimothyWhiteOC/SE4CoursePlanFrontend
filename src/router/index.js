@@ -3,6 +3,7 @@ import listPage from '../views/listPage.vue'
 import listEntryPage from '../views/listEntryPage.vue'
 import mainmenu from '../views/mainmenu.vue'
 import listStudent from '../views/listStudent.vue'
+import login from '../components/GoogleLogin.vue'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/listStudent',
     name: 'listStudent',
     component: listStudent
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   }
 ]
 
