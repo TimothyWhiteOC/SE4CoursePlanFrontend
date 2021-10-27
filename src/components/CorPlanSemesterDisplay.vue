@@ -12,7 +12,7 @@
       <button>edit</button>
     </router-link>
 
-    <button v-on:click="deleteCourse()"><span>delete</span></button>
+    <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
     <br>
 
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'ListEntry',
+  name: 'CorPlanSemesterDisplay',
   props: {
     semester: Object
   },

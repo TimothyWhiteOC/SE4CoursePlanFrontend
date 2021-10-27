@@ -3,6 +3,7 @@ import listPage from '../views/listPage.vue'
 import listEntryPage from '../views/listEntryPage.vue'
 import mainmenu from '../views/mainmenu.vue'
 import listStudent from '../views/listStudent.vue'
+import coursePlan from '../views/coursePlan.vue'
 
 const routes = [
   {
@@ -35,7 +36,7 @@ const routes = [
     path: '/students/:studentID/coursePlan',
     name: 'coursePlan',
     props: true,
-    component: courseplanPage
+    component: coursePlan
   }
 ]
 

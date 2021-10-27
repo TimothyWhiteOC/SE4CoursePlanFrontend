@@ -25,7 +25,7 @@ import CourseServices from "@/services/CourseServices.js";
 export default {
   name: 'ListEntry',
   props: {
-    auditCourse: Object
+    course: Object
   }  
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>Course Plan</h2>   
+    <h2>Course Plan</h2>
+    <h3>Total Hours: {{totalHours}}   Total major Credit: {{totalMajorHours}}</h3>
     <br>
     <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
 
@@ -20,16 +21,17 @@ import StudentServices from '@/services/StudentServices.js';
 import CourseServices from '@/services/CourseServices.js';
 
 import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
-import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
+
 export default {
-  components: { DegreeAuditCourseCorPlanSemesterDisplay },
+  components: { CorPlanSemesterDisplay },
   props: ['studentID'],
   data() {
     return {
       // https://stackoverflow.com/questions/58721689/how-to-v-model-for-array-of-objects
+      // https://www.delftstack.com/howto/javascript/javascript-declare-empty-array/
       semesters: [],
       totalHours: 0,
-      majorCred: 0
+      totalMajorHours: 0
     };
   },
   created() {
@@ -41,14 +43,14 @@ export default {
     var curCourse = {};
 
 
-    StudentServices.getStudent(studentID)
+    StudentServices.getStudent(this.studentID)
       .then(response => {
         studentMajorID = response.data.majorID;
       })
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-    StudentCourseServices.getStudentCourses(studentID)
+    StudentCourseServices.getStudentCourses(this.studentID)
       .then(response => {
         studentCourses = response.data
       })
@@ -65,27 +67,30 @@ export default {
       })
     // https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
     // https://www.w3docs.com/snippets/javascript/how-to-append-an-item-to-an-array-in-javascript.html
-    
-    for (sCourse in studentCourses) {
+    // https://www.w3schools.com/js/js_objects.asp
+    // https://eslint.org/docs/rules/no-undef
+
+    // https://www.delftstack.com/howto/javascript/javascript-declare-empty-array/
+    for (var sCourse in studentCourses) {
       semesterChrono = {
-        year = sCourse.semYear,
-        term = sCourse.semTerm
+        year: sCourse.semYear,
+        term: sCourse.semTerm
       };
-      semester = semesters.find(getSemesterExists, semesterChrono);
+      semester = this.semesters.find(getSemesterExists, semesterChrono);
       if (!semester) {
         semester = {
-          semTerm = sCourse.semTerm,
-          semYear = sCourse.semYear,
-          semStartDate = {},
-          GPA = 0,
-          semHours = 0,
-          semMajorHours = 0,
-          courses = []
+          semTerm: sCourse.semTerm,
+          semYear: sCourse.semYear,
+          semStartDate: {},
+          GPA: 0,
+          semHours: 0,
+          semMajorHours: 0,
+          courses: []
         };
-        semesters.push(semester);
+        this.semesters.push(semester);
       }
 
-      CourseServices.getCourse(studentsCourse.courseNo)
+      CourseServices.getCourse(sCourse.courseNo)
       .then(response => {
         curCourse =  response.data
       })
@@ -96,15 +101,17 @@ export default {
       semester.courses.push(
         {
           // load all the necessarydata here from sCourse and currCourse
-          dept = currCourse.dept,
-          courseNo = sCourse.courseNo,
-          desc = currCourse.description,
-          grade = sCourse.grade
+          dept: curCourse.dept,
+          courseNo: sCourse.courseNo,
+          desc: curCourse.description,
+          grade: sCourse.grade
         }
       );
       semester.semHours += curCourse.hours;
+      this.totalHours += curCourse.hours;
       if (majorCourses.find(getCreditedCourse, sCourse)) {
         semester.semMajorHours += curCourse.hours;
+        this.totalMajorHours += curCourse.hours;
       }
     }
 
@@ -153,14 +160,14 @@ export default {
   methods: {
     cancel() {
       this.$router.push({ name: 'menu' });
-    },
+    }
     // may need to install jspdf, autotable
     // https://stackoverflow.com/questions/54069884/installing-jspdf-using-npm-command
     // https://cnpmjs.org/package/jspdf-autotable
     // or may need to import
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
-    makePDF() {
+    /*makePDF() {
       const columns = [
         { title: "Title", dataKey: "title" },
         { title: "Body", dataKey: "body" }
@@ -198,7 +205,7 @@ export default {
           doc.internal.pageSize.height - 0.5
         )
         .save(`${this.heading}.pdf`);
-    }
+    }*/
   }
 }
 
@@ -207,13 +214,13 @@ function getCreditedCourse(courseNo) {
 }
 
 function getSemesterExists(semester) {
-  return (semster.semTerm === this.term && semster.year === this.semYear);
+  return (semester.semTerm === this.term && semester.year === this.semYear);
 }
 
 // https://www.w3schools.com/jsref/jsref_sort.asp
-function a(courseNo) {
+/*function a(courseNo) {
   return courseNo == this.currentCourseNo;
-}
+}*/
 </script>
 
 <!--import jspdf and autotable here if imports fail 
