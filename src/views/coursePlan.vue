@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
-    <button v-on:click= "mkaePDF">Save PDF</button>
+    <button v-on:click= "makePDF">Save PDF</button>
     <button v-on:click= "cancel">Back</button>
     <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
     <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
@@ -114,13 +114,17 @@ export default {
       }
     }
 
-    for (var s in this.semesters) {
-      s.GPA = s.undivGPA / s.semHours;
-      s.majorGPA = s.undivMajorGPA / s.semMajorHours;
+    console.log("uGPA: " + this.undivGPA);
+
+
+    // https://stackoverflow.com/questions/45381590/js-limit-the-number-of-decimal-places-in-a-number
+    for (var s of this.semesters) {
+      if (s.semHours > 0) s.GPA += (s.undivGPA / s.semHours).toFixed(2);
+      if (s.semMajorHours > 0) s.majorGPA += (s.undivMajorGPA / s.semMajorHours).toFixed(2);
     }
 
-    this.GPA = this.undivGPA / this.totalHours;
-    this.majorGPA = this.undivMajorGPA / this.totalMajorHours;
+    if (this.totalHours > 0) this.GPA += (this.undivGPA / this.totalHours).toFixed(2);
+    if (this.semMajorHours > 0) this.majorGPA += (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
 
 
     /*
@@ -183,10 +187,13 @@ export default {
         format: "letter"
       });
       // text is placed using x, y coordinates
-      doc.setFontSize(16).text(this.heading, 0.5, 1.0);
+      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // Using autoTable plugin
+      for (var semester of this.semesters) {
+
+      }
       doc.autoTable({
         columns,
         body: this.items,
