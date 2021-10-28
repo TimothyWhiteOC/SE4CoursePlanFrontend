@@ -17,6 +17,7 @@ export default {
           return null;
         }
         setStore('token', {token: token});
+        this.$forceUpdate();
       } catch (error) {
         //on fail do something
         console.error(error);
@@ -27,6 +28,7 @@ export default {
       try {
         await this.$gAuth.signOut();
         removeItem('token');
+        this.$forceUpdate();
       } catch (error) {
         console.error(error);
       }
