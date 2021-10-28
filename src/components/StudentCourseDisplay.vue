@@ -3,7 +3,7 @@
 
   <div class="courseDisp">
     <br>
-    {{name}}    Course No. {{courseNo}}   {{hours}} Hours     Grade: {{grade}}
+    {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
   </div>
     
@@ -17,9 +17,6 @@ export default {
   name: 'StudentCourseDisplay',
   props: {
     course: Object
-  },
-  created() {
-    console.log(this.course);
   }
 }
 </script>

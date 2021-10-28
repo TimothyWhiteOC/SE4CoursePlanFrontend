@@ -1,19 +1,24 @@
 <template>
   <div>
-    <h2>Course Plan</h2>
-    <h3>Total Hours: {{totalHours}}   Total major Credit: {{totalMajorHours}}</h3>
+    <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
+    <button v-on:click= "mkaePDF">Save PDF</button>
+    <button v-on:click= "cancel">Back</button>
+    <h3>Total Hours: {{totalHours}}   Total major Credit: {{totalMajorHours}} GPA: {{GPA}}</h3>
     <br>
     <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
 
-    <!-- <button v-on:click= "cancel">Cancel</button>-->
 
   <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
 
   </div>
 </template>
 
+<!--<script src="jspdf.plugin.autotable.min.js"></script>-->
 
 <script>
+// https://www.npmjs.com/package/jspdf
+import { jsPDF } from "jspdf";
+
 
 import StudentCourseServices from '@/services/StudentCourseServices.js';
 import MajorCourseServices from '@/services/MajorCourseServices.js';
@@ -31,6 +36,7 @@ export default {
       semesters: [],
       totalHours: 0,
       totalMajorHours: 0,
+      GPA: 0,
       student: {}
     };
   },
@@ -74,7 +80,6 @@ export default {
         semTerm: "no",
         semYear: 1909
       });*/
-      console.log("S: " + semester);
       if (!compareTerm(semester, sCourse)) {
         semester = {
           semTerm: sCourse.semTerm,
@@ -141,14 +146,14 @@ export default {
   methods: {
     cancel() {
       this.$router.push({ name: 'menu' });
-    }
+    },
     // may need to install jspdf, autotable
     // https://stackoverflow.com/questions/54069884/installing-jspdf-using-npm-command
     // https://cnpmjs.org/package/jspdf-autotable
     // or may need to import
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
-    /*makePDF() {
+    makePDF() {
       const columns = [
         { title: "Title", dataKey: "title" },
         { title: "Body", dataKey: "body" }
@@ -186,7 +191,7 @@ export default {
           doc.internal.pageSize.height - 0.5
         )
         .save(`${this.heading}.pdf`);
-    }*/
+    }
   }
 }
 
@@ -209,6 +214,3 @@ function getSemesterExists(semester) {
 }*/
 </script>
 
-<!--import jspdf and autotable here if imports fail 
-  <script src="jspdf.plugin.autotable.min.js"></script>
--->

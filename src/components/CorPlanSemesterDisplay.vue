@@ -4,10 +4,9 @@
   <div class="courseDisp">
     
    <!-- -->
-
+    <br>
     <span> Semester     {{semester.semTerm}}      {{semester.semYear}} </span>
     <span>    Hours: {{semester.semHours}}    Major Hours: {{semester.semMajorHours}}     GPA: {{semester.GPA}} </span>
-    <span>{{semester.courses}}</span>
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
     <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"/>
