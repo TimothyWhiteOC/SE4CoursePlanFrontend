@@ -3,7 +3,8 @@
     <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
     <button v-on:click= "mkaePDF">Save PDF</button>
     <button v-on:click= "cancel">Back</button>
-    <h3>Total Hours: {{totalHours}}   Total major Credit: {{totalMajorHours}} GPA: {{GPA}}</h3>
+    <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
+    <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
     <br>
     <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
 
@@ -37,6 +38,9 @@ export default {
       totalHours: 0,
       totalMajorHours: 0,
       GPA: 0,
+      undivGPA: 0,
+      majorGPA: 0,
+      undivMajorGPA: 0,
       student: {}
     };
   },
@@ -44,6 +48,7 @@ export default {
     var studentCourses = {};
     var semester = {};
     var majorCourses = {};
+    var gpaWeight = {};
 
     await StudentServices.getStudent(this.studentID)
       .then(response => {
@@ -85,21 +90,38 @@ export default {
           semTerm: sCourse.semTerm,
           semYear: sCourse.semYear,
           GPA: 0,
+          undivGPA: 0,
           semHours: 0,
+          majorGPA: 0,
+          undivMajorGPA: 0,
           semMajorHours: 0,
           courses: new Array()
         };
         this.semesters.push(semester);
       }
       semester.courses.push(sCourse);
-      semester.semHours += sCourse.hours;
-      this.totalHours += sCourse.hours;
+      gpaWeight = letterGradeToGPA(sCourse.grade, sCourse.hours);
+      semester.semHours += gpaWeight.weight;
+      this.totalHours += gpaWeight.weight;
+      semester.undivGPA += gpaWeight.val;
+      this.undivGPA += gpaWeight.val;
       
       if (majorCourses.find(getCreditedCourse, sCourse)) {
-        semester.semMajorHours += sCourse.hours;
-        this.totalMajorHours += sCourse.hours;
+        semester.semMajorHours += gpaWeight.weight;
+        this.totalMajorHours += gpaWeight.weight;
+        semester.undivMajorGPA += gpaWeight.val;
+        this.undivMajorGPA += gpaWeight.val;
       }
     }
+
+    for (var s in this.semesters) {
+      s.GPA = s.undivGPA / s.semHours;
+      s.majorGPA = s.undivMajorGPA / s.semMajorHours;
+    }
+
+    this.GPA = this.undivGPA / this.totalHours;
+    this.majorGPA = this.undivMajorGPA / this.totalMajorHours;
+
 
     /*
     // add the sort later
@@ -113,10 +135,7 @@ export default {
 
     // calculate all necessary values;
     gpa
-    */
-   
-    
-    /*
+
     // so, this was old
     
     for (sCourse in studentCourses) {
@@ -201,6 +220,34 @@ function getCreditedCourse(courseNo) {
 
 function compareTerm(a, b) {
   return ((a.semTerm === b.semTerm) && (a.semYear === b.semYear));
+}
+
+function letterGradeToGPA(grade, hours) {
+  var gpa = {
+    val: 0,
+    weight: 0
+  }; 
+  if (grade === "A") {
+    gpa.val = 4 * hours;
+    gpa.weight = hours;
+  }
+  else if (grade === "B") {
+    gpa.val = 3 * hours;
+    gpa.weight = hours;
+  }
+  else if (grade === "C") {
+    gpa.val = 2 * hours;
+    gpa.weight = hours;
+  }
+  else if (grade === "D") {
+    gpa.val = 1 * hours;
+    gpa.weight = hours;
+  }
+  else if (grade === "F") {
+    gpa.val = 0 * hours;
+    gpa.weight = hours;
+  } 
+  return gpa;
 }
 
 /*

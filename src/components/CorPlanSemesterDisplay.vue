@@ -6,7 +6,8 @@
    <!-- -->
     <br>
     <span> Semester     {{semester.semTerm}}      {{semester.semYear}} </span>
-    <span>    Hours: {{semester.semHours}}    Major Hours: {{semester.semMajorHours}}     GPA: {{semester.GPA}} </span>
+    <span>    Hours: {{semester.semHours}}   GPA: {{semester.GPA}} </span>
+    <span>    Major Hours: {{semester.semMajorHours}}     Major GPA: {{semester.majorGPA}} </span>
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
     <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"/>
