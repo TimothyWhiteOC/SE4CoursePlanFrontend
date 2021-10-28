@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getStore, setStore } from "@/store/store"
+import { getStore, setStore, removeItem } from "@/store/store"
 export default {
   name: "GoogleLogin",
   methods: {
@@ -26,13 +26,13 @@ export default {
     async handleClickSignOut() {
       try {
         await this.$gAuth.signOut();
-        setStore('token', {});
+        removeItem('token');
       } catch (error) {
         console.error(error);
       }
     },
     loggedIn() {
-      return Object.keys(getStore('token')).length;
+      return getStore('token');
     }
   },
   computed: {

@@ -1,8 +1,6 @@
 <template>
   <div class="main-container">
-    <form>
-        <GoogleLogin />
-    </form>
+    <GoogleLogin />
   </div>
 </template>
 

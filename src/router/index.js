@@ -3,7 +3,7 @@ import listPage from '../views/listPage.vue'
 import listEntryPage from '../views/listEntryPage.vue'
 import mainmenu from '../views/mainmenu.vue'
 import listStudent from '../views/listStudent.vue'
-import login from '../components/GoogleLogin.vue'
+import login from '../views/loginPage.vue'
 
 const routes = [
   {
