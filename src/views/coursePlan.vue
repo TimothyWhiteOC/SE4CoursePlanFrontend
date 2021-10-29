@@ -188,9 +188,8 @@ export default {
         unit: "in",
         format: "letter"
       });
-      doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // text is placed using x, y coordinates
-      // doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
+      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 2.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // overall Data
