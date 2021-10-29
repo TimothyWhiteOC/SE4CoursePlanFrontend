@@ -19,6 +19,8 @@
 <script>
 // https://www.npmjs.com/package/jspdf
 import { jsPDF } from "jspdf";
+// https://www.npmjs.com/package/jspdf-autotable
+import 'jspdf-autotable';
 
 
 import StudentCourseServices from '@/services/StudentCourseServices.js';
@@ -190,33 +192,23 @@ export default {
       doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
-      // Using autoTable plugin
-      for (var semester of this.semesters) {
-
+      // overall Data
+      doc.setFontSize(12);
+      doc.text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
+      
+      for (var s of this.semesters) {
+        doc.text(s.semTerm + "  " + s.semYear + " Hours: " + s.semHours + "  GPA: " + s.GPA +
+        " Major Credit: " + s.majorGPA, 0.5, 1.0);
+        // Using autoTable plugin
+        doc.autoTable({
+          columns,
+          body: s.cou,
+          margin: { left: 0.5, top: 1.25 }
+        });
       }
-      doc.autoTable({
-        columns,
-        body: this.items,
-        margin: { left: 0.5, top: 1.25 }
-      });
-      // Using array of sentences
-      doc
-        .setFont("helvetica")
-        .setFontSize(12)
-        .text(this.moreText, 0.5, 3.5, { align: "left", maxWidth: "7.5" });
       
       // Creating footer and saving file
-      doc
-        .setFont("times")
-        .setFontSize(11)
-        .setFontStyle("italic")
-        .setTextColor(0, 0, 255)
-        .text(
-          "This is a simple footer located .5 inches from page bottom",
-          0.5,
-          doc.internal.pageSize.height - 0.5
-        )
-        .save(`${this.heading}.pdf`);
+      doc.save(`${this.heading}.pdf`);
     }
   }
 }
