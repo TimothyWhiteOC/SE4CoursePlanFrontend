@@ -121,12 +121,12 @@ export default {
 
     // https://stackoverflow.com/questions/45381590/js-limit-the-number-of-decimal-places-in-a-number
     for (var s of this.semesters) {
-      if (s.semHours > 0) s.GPA += (s.undivGPA / s.semHours).toFixed(2);
-      if (s.semMajorHours > 0) s.majorGPA += (s.undivMajorGPA / s.semMajorHours).toFixed(2);
+      if (s.semHours > 0) s.GPA = (s.undivGPA / s.semHours).toFixed(2);
+      if (s.semMajorHours > 0) s.majorGPA = (s.undivMajorGPA / s.semMajorHours).toFixed(2);
     }
 
-    if (this.totalHours > 0) this.GPA += (this.undivGPA / this.totalHours).toFixed(2);
-    if (this.semMajorHours > 0) this.majorGPA += (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
+    if (this.totalHours > 0) this.GPA = (this.undivGPA / this.totalHours).toFixed(2);
+    if (this.semMajorHours > 0) this.majorGPA = (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
 
 
     /*
