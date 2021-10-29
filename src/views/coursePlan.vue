@@ -75,6 +75,8 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
+
+    console.log("mC: " + majorCourses);
     // https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
     // https://www.w3docs.com/snippets/javascript/how-to-append-an-item-to-an-array-in-javascript.html
     // https://www.w3schools.com/js/js_objects.asp
@@ -115,8 +117,6 @@ export default {
         this.undivMajorGPA += gpaWeight.val;
       }
     }
-
-    console.log("uGPA: " + this.undivGPA);
 
 
     // https://stackoverflow.com/questions/45381590/js-limit-the-number-of-decimal-places-in-a-number
@@ -181,7 +181,9 @@ export default {
     makePDF() {
       const columns = [
         { title: "Course No.", dataKey: "courseNo" },
-        { title: "Body", dataKey: "body" }
+        { title: "Course Name", dataKey: "name" },
+        { title: "Hours", dataKey: "hours" },
+        { title: "Grade", dataKey: "grade" }       
       ];
       const doc = new jsPDF({
         orientation: "portrait",
@@ -189,22 +191,29 @@ export default {
         format: "letter"
       });
       // text is placed using x, y coordinates
-      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 2.0);
+      // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_todatestring
+      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "Course Plan as of " + new Date().toDateString(), 0.5, 1.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // overall Data
       doc.setFontSize(12);
-      doc.text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
-      
+      doc.text(" Hours: " + this.totalHours + "  GPA: " + this.GPA +
+        " Major Credit: " + this.totalMajorHours + " Major GPA:  " + this.majorGPA, 0.5, 1.4);
+      // Thanks Professor North
+      let yPos = 1.8; 
       for (var s of this.semesters) {
         doc.text(s.semTerm + "  " + s.semYear + " Hours: " + s.semHours + "  GPA: " + s.GPA +
-        " Major Credit: " + s.majorGPA, 0.5, 1.0);
+        " Major Credit: " + s.semMajorHours + " Major GPA:  " + s.majorGPA, 0.5, yPos);
+        yPos += 0.2;
         // Using autoTable plugin
+        // https://openbase.com/js/jspdf-autotable/documentation
         doc.autoTable({
+          startY: yPos,
           columns,
           body: s.courses,
           margin: { left: 0.5, top: 1.25 }
         });
+        yPos = doc.lastAutoTable.finalY + 0.4;
       }
       
       // Creating footer and saving file
@@ -213,8 +222,8 @@ export default {
   }
 }
 
-function getCreditedCourse(courseNo) {
-  return courseNo == this.currentCourseNo;
+function getCreditedCourse(majorCourse) {
+  return majorCourse.courseNo === this.courseNo;
 }
 
 function compareTerm(a, b) {
