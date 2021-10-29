@@ -180,7 +180,7 @@ export default {
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
     makePDF() {
       const columns = [
-        { title: "Title", dataKey: "title" },
+        { title: "Course No.", dataKey: "courseNo" },
         { title: "Body", dataKey: "body" }
       ];
       const doc = new jsPDF({
@@ -188,8 +188,9 @@ export default {
         unit: "in",
         format: "letter"
       });
+      doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // text is placed using x, y coordinates
-      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
+      // doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "CoursePlan", 0.5, 1.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // overall Data
@@ -202,7 +203,7 @@ export default {
         // Using autoTable plugin
         doc.autoTable({
           columns,
-          body: s.cou,
+          body: s.courses,
           margin: { left: 0.5, top: 1.25 }
         });
       }
