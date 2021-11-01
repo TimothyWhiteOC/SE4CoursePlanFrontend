@@ -12,11 +12,11 @@ export default {
   methods: {
     async handleClickSignIn(){
       try {
-        const token = await this.$gAuth.getAuthCode();
+        const token = await this.$gAuth.signIn();
         if (!token) {
           return null;
         }
-        setStore('token', {token: token});
+        setStore('token', {token: token.getAuthResponse().id_token});
         this.$forceUpdate();
       } catch (error) {
         //on fail do something
