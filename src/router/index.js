@@ -6,6 +6,8 @@ import advisorEditEntry from '../views/advisorEditEntry.vue'
 import listCourses from '../views/listCourses.vue'
 import listStudents from '../views/listStudents.vue'
 import listAdvisors from '../views/listAdvisors.vue'
+import coursePlan from '../views/coursePlan.vue'
+import login from '../views/loginPage.vue'
 
 const routes = [
   {
