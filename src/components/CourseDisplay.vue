@@ -14,7 +14,6 @@
     <button v-on:click="deleteCourse()"><span>delete</span></button>
     <br>
     <br>
-
   </div>
     
 
