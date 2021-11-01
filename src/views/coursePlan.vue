@@ -192,7 +192,7 @@ export default {
       });
       // text is placed using x, y coordinates
       // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_todatestring
-      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "Course Plan as of " + new Date().toDateString(), 0.5, 1.0);
+      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + " Course Plan as of " + new Date().toDateString(), 0.5, 1.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // overall Data
@@ -217,7 +217,7 @@ export default {
       }
       
       // Creating footer and saving file
-      doc.save(`${this.heading}.pdf`);
+      doc.save(`${this.student.fName + this.student.lName}CoursePlan.pdf`);
     }
   }
 }
