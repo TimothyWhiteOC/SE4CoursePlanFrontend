@@ -2,17 +2,8 @@
 
 
   <div class="courseDisp">
-    
-   <!-- -->
-
-    <span>{{course.courseNo}} {{course.name}} </span>
-
-    <router-link :to="{ name: 'edit' , params: { courseNo: course.courseNo }}">
-      <button>edit</button>
-    </router-link>
-
-    <button v-on:click="deleteCourse()"><span>delete</span></button>
     <br>
+    {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
   </div>
     
@@ -22,27 +13,10 @@
 </template>
 
 <script>
-import CourseServices from "@/services/CourseServices.js";
 export default {
-  name: 'ListEntry',
+  name: 'StudentCourseDisplay',
   props: {
     course: Object
-  },
-  methods: {
-    deleteCourse(){
-      // from https://www.vuemastery.com/courses/touring-vue-router/in-component-route-guards
-      const answer = window.confirm(
-        'Sure you wanna delete ' + this.course.name + '? It\'ll be gone forever!'
-      )
-      if (answer) {
-        
-        CourseServices.deleteCourse(this.course.courseNo); // <-- Confirm delete
-        // https://stackoverflow.com/questions/40445125/how-can-component-delete-itself-in-vue-2-0
-        this.$delete;
-        this.$el.parentNode.removeChild(this.$el);
-      } 
-    }
-    
   }
 }
 </script>

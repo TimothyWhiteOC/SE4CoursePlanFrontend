@@ -3,11 +3,11 @@ import listPage from '../views/listPage.vue'
 import listEntryPage from '../views/listEntryPage.vue'
 import mainmenu from '../views/mainmenu.vue'
 import listStudent from '../views/listStudent.vue'
+import coursePlan from '../views/coursePlan.vue'
 
 const routes = [
   {
     path: '/',
-
     name: 'menu',
     component: mainmenu
   },
@@ -21,7 +21,6 @@ const routes = [
     name: 'edit',
     props: true,
     component: listEntryPage
-
   },
   {
     path: '/listPage',
@@ -32,6 +31,12 @@ const routes = [
     path: '/listStudent',
     name: 'listStudent',
     component: listStudent
+  },
+  {
+    path: '/coursePlan/:studentID',
+    name: 'coursePlan',
+    props: true,
+    component: coursePlan
   }
 ]
 

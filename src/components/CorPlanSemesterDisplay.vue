@@ -4,16 +4,15 @@
   <div class="courseDisp">
     
    <!-- -->
-
-    <span>{{course.courseNo}} {{course.name}} </span>
-
-    <router-link :to="{ name: 'edit' , params: { courseNo: course.courseNo }}">
-      <button>edit</button>
-    </router-link>
-
-    <button v-on:click="deleteCourse()"><span>delete</span></button>
     <br>
+    <span> Semester     {{semester.semTerm}}      {{semester.semYear}} </span>
+    <span>    Hours: {{semester.semHours}}   GPA: {{semester.GPA}} </span>
+    <span>    Major Hours: {{semester.semMajorHours}}     Major GPA: {{semester.majorGPA}} </span>
+    <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
+    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"/>
+    <br>
+
   </div>
     
 
@@ -22,26 +21,16 @@
 </template>
 
 <script>
-import CourseServices from "@/services/CourseServices.js";
+import StudentCourseDisplay from '../components/StudentCourseDisplay.vue';
+
 export default {
-  name: 'ListEntry',
+  name: 'CorPlanSemesterDisplay',
+  components: { StudentCourseDisplay },
   props: {
-    course: Object
+    semester: Object
   },
   methods: {
-    deleteCourse(){
-      // from https://www.vuemastery.com/courses/touring-vue-router/in-component-route-guards
-      const answer = window.confirm(
-        'Sure you wanna delete ' + this.course.name + '? It\'ll be gone forever!'
-      )
-      if (answer) {
-        
-        CourseServices.deleteCourse(this.course.courseNo); // <-- Confirm delete
-        // https://stackoverflow.com/questions/40445125/how-can-component-delete-itself-in-vue-2-0
-        this.$delete;
-        this.$el.parentNode.removeChild(this.$el);
-      } 
-    }
+
     
   }
 }

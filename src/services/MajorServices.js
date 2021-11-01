@@ -32,20 +32,20 @@ const apiClient = axios.create({
 });
 
 export default {
-  getStudents() {
-    return apiClient.get("/students/");
+  getMajors() {
+    return apiClient.get("/degrees/");
   },
 
-  getStudent(studentID) {
-    return apiClient.get("/students/" + studentID);
+  getMajor(majorID) {
+    return apiClient.get("/degrees/" + majorID);
   },
-  deleteStudent(studentID) {
-    return apiClient.delete("/students/" + studentID);
+  deleteMajor(majorID) {
+    return apiClient.delete("/degrees/" + majorID);
   },
-  addStudent(student) {
-    return apiClient.post("/students/", student);
+  addMajor(major) {
+    return apiClient.post("/degrees/", major);
   },
-  updateStudent(studentID, student) {
-    return apiClient.put("/students/" + studentID, student);
+  updateMajor(majorID, major) {
+    return apiClient.put("/degrees/" + majorID, major);
   }
 };
