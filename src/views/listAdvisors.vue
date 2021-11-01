@@ -26,15 +26,13 @@
     </div>
     </div>
 
-   <!-- <button v-on:click= "cancel">Cancel</button>-->
+  <!-- <button v-on:click= "cancel">Cancel</button>-->
  
    </div>
-      <h2 class = "title">List of Advisors</h2>
-
+    <h2 class = "title">List of Advisors</h2>
     <input  class = "search" type = "text" v-model= "search" placeholder="Filter by advisor name &#x1F50E;&#xFE0E;	"/>
     <br>
     <advisor-display class = "listDisp"  v-for="advisor in filteredAdvisors" :key="advisor.advisorID" :advisor="advisor"/> 
-
 
   </div>
 </template>
