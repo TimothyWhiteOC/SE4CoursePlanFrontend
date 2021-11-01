@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
 import adminmenu from '../views/adminmenu.vue'
 import courseEditEntry from '../views/courseEditEntry.vue'
 import studentEditEntry from '../views/studentEditEntry.vue'
@@ -7,6 +6,8 @@ import advisorEditEntry from '../views/advisorEditEntry.vue'
 import listCourses from '../views/listCourses.vue'
 import listStudents from '../views/listStudents.vue'
 import listAdvisors from '../views/listAdvisors.vue'
+import coursePlan from '../views/coursePlan.vue'
+import login from '../views/loginPage.vue'
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     name: 'editAdvisor',
     props: true,
     component: advisorEditEntry
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   },
   {
     path: '/listCourses',
