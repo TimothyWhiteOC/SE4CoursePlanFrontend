@@ -11,32 +11,65 @@
 
       <div v-if="active">
         <div class="dropdown-content">
-        <a><router-link :to="{ name: 'courseAdd'}">Add New Course</router-link></a>
-
-        <a><router-link :to="{ name: 'listCourses'}">Search for Course</router-link></a>
-
-        <a> <router-link :to="{ name: 'studentAdd'}">Add New Student</router-link></a>
-
-        <a> <router-link :to="{ name: 'listStudents'}">Search for Students</router-link></a>
-
-        <a> <router-link :to="{ name: 'advisorAdd'}">Add New Advisor</router-link></a>
-
-        <a><router-link :to="{ name: 'listAdvisors'}">Search for Advisors</router-link></a>
+          <a v-for="link in activeLinks" :key="link.link">
+            <router-link :to="{ name: link.link}">{{link.displayText}}</router-link></a>
+        </div>
       </div>
     </div>
-  </div>
-    <h2 class = "title">Admin Menu</h2>
-    
-    <h1>Welcome User,</h1>
+    <h2 class = "title">{{this.pageName}}</h2>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'DropDownMenu',
+  props: {
+    role: String,
+    pageName: String
+    //pageType: String? Might be needed later
+  },
   data () {
     return {
-      active: false
+      active: false,
+      activeLinks: [],
+      allLinksByRole: [
+        {
+          link: 'courseAdd',
+          displayText: 'Add New Course',
+          roles: ['admin', 'advisor']
+        },
+        {
+          link: 'listCourses',
+          displayText: 'Search for Course',
+          roles: ['admin', 'advisor', 'student', 'none']
+        },
+        {
+          link: 'studentAdd',
+          displayText: 'Add New Student',
+          roles: ['admin', 'advisor']
+        },
+        {
+          link: 'listStudents',
+          displayText: 'Search for Advisors',
+          roles: ['admin', 'advisor']
+        },
+
+        {
+          link: 'advisorAdd',
+          displayText: 'Add New Advisor',
+          roles: ['admin']
+        },
+        {
+          link: 'listAdvisors',
+          displayText: 'Search for Students',
+          roles: ['admin', 'advisor']
+        }
+      ]
     }
+  },
+  created() {
+    this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.role));
+    console.log("role: " + this.role);
   },
   methods: {
     toggle () {

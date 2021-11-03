@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import adminmenu from '../views/adminmenu.vue'
-import studentMenu from '../views/studentMenu.vue'
+//import adminmenu from '../views/adminmenu.vue'
+//import studentMenu from '../views/studentMenu.vue'
 import courseEditEntry from '../views/courseEditEntry.vue'
 import studentEditEntry from '../views/studentEditEntry.vue'
 import advisorEditEntry from '../views/advisorEditEntry.vue'
@@ -71,7 +71,9 @@ const routes = [
     name: 'coursePlan',
     props: true,
     component: coursePlan
-  },
+  }
+  
+  /*,
   {
     path: '/studentMenu/:studentID',
     name: 'studentMenu',
@@ -82,7 +84,7 @@ const routes = [
     path: '/adminmenu',
     name: 'adminmenu',
     component: adminmenu
-  }
+  }*/
 ]
 
 
