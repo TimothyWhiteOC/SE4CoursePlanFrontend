@@ -31,11 +31,11 @@ export default {
       active:false
     };
   },
-  async created() {
-    await UserServices.getUser()
+  created() {
+    UserServices.getUser()
       .then(response => {
-        this.user = response.data[0];
-        console.log(response)
+        this.user = response.data.user;
+        console.log(this.user);
       })
       .catch(error => {
         console.log('There was an error:', error.response)
