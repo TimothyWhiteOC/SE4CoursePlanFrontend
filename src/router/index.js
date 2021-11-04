@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import adminmenu from '../views/adminmenu.vue'
+//import adminmenu from '../views/adminmenu.vue'
+//import studentMenu from '../views/studentMenu.vue'
 import courseEditEntry from '../views/courseEditEntry.vue'
 import studentEditEntry from '../views/studentEditEntry.vue'
 import advisorEditEntry from '../views/advisorEditEntry.vue'
@@ -10,12 +11,6 @@ import coursePlan from '../views/coursePlan.vue'
 import login from '../views/loginPage.vue'
 
 const routes = [
-  {
-    path: '/adminmenu',
-
-    name: 'adminmenu',
-    component: adminmenu
-  },
   {
     path: '/courseAdd',
     name: 'courseAdd',
@@ -77,7 +72,23 @@ const routes = [
     props: true,
     component: coursePlan
   }
+  
+  /*,
+  {
+    path: '/studentMenu/:studentID',
+    name: 'studentMenu',
+    props: true,
+    component: studentMenu
+  },
+  {
+    path: '/adminmenu',
+    name: 'adminmenu',
+    component: adminmenu
+  }*/
 ]
+
+
+// https://stackoverflow.com/questions/47591679/multiple-routers-with-vue
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

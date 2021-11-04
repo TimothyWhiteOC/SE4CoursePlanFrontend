@@ -7,6 +7,8 @@
 
 <script>
 import { getStore, setStore, removeItem } from "@/store/store"
+import UserServices from '@/services/UserServices.js'
+
 export default {
   name: "GoogleLogin",
   methods: {
@@ -17,6 +19,13 @@ export default {
           return null;
         }
         setStore('token', {token: token.getAuthResponse().id_token});
+        UserServices.getUser()
+          .then(response => {
+            setStore('user', response.data.user);      
+          })
+          .catch(error => {
+            console.log('There was an error:', error.response)
+          })
         this.$forceUpdate();
       } catch (error) {
         //on fail do something
@@ -28,6 +37,7 @@ export default {
       try {
         await this.$gAuth.signOut();
         removeItem('token');
+        removeItem('user');
         this.$forceUpdate();
       } catch (error) {
         console.error(error);

@@ -1,16 +1,16 @@
 <template>
   <div>
-    <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
-    <button v-on:click= "makePDF">Save PDF</button>
-    <button v-on:click= "cancel">Back</button>
-    <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
-    <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
-    <br>
-    <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
-
-
+    <drop-down-menu pageName="Course Plan"/>
+    <div>
+      <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
+      <button v-on:click= "makePDF">Save PDF</button>
+      <button v-on:click= "cancel">Back</button>
+      <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
+      <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
+      <br>
+      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
+    </div>
   <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
-
   </div>
 </template>
 
@@ -27,10 +27,11 @@ import StudentCourseServices from '@/services/StudentCourseServices.js';
 import MajorCourseServices from '@/services/MajorCourseServices.js';
 import StudentServices from '@/services/StudentServices.js';
 
+import DropDownMenu from '../components/DropDownMenu.vue'
 import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
 
 export default {
-  components: { CorPlanSemesterDisplay },
+  components: { DropDownMenu, CorPlanSemesterDisplay },
   props: ['studentID'],
   data() {
     return {
