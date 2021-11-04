@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       courses: [],
-      user: {},
       search:'Accounting',
       active:false
     };

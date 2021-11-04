@@ -70,7 +70,9 @@ export default {
     }
   },
   created() {
-    this.role = getStore("user").role;
+    var user = getStore("user");
+    if (user == null) this.role = 'none';
+    else this.role = user.role;
     console.log(this.role);
     this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.role));
   },
