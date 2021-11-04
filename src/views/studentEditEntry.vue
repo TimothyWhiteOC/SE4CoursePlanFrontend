@@ -75,6 +75,12 @@
 <script>
 import StudentServices from '@/services/StudentServices.js'
 
+<<<<<<< Updated upstream
+=======
+import DropDownMenu from '../components/DropDownMenu.vue'
+
+
+>>>>>>> Stashed changes
 export default {
   props: ['studentID'],
   data() {
