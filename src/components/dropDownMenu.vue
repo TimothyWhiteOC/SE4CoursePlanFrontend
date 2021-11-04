@@ -21,15 +21,17 @@
 </template>
 
 <script>
+import { getStore } from "@/store/store"
+
 export default {
   name: 'DropDownMenu',
   props: {
-    role: String,
     pageName: String
     //pageType: String? Might be needed later
   },
   data () {
     return {
+      user: {},
       active: false,
       activeLinks: [],
       allLinksByRole: [
@@ -68,8 +70,9 @@ export default {
     }
   },
   created() {
+    this.role = getStore("user").role;
+    console.log(this.role);
     this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.role));
-    console.log("role: " + this.role);
   },
   methods: {
     toggle () {

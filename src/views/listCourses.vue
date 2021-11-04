@@ -1,6 +1,6 @@
 <template>
   <div>
-    <drop-down-menu :role="user.role" pageName="List of Courses"/>
+    <drop-down-menu pageName="Course List"/>
     <div>
       
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
@@ -18,7 +18,6 @@
 <script>
 
 import CourseServices from '@/services/CourseServices.js'
-import UserServices from '@/services/UserServices.js'
 import CourseDisplay from '../components/CourseDisplay.vue'
 import DropDownMenu from '../components/DropDownMenu.vue'
 export default {
@@ -32,15 +31,6 @@ export default {
     };
   },
   created() {
-    UserServices.getUser()
-      .then(response => {
-        this.user = response.data.user;
-        console.log("user:");
-        console.log(this.user.role);
-      })
-      .catch(error => {
-        console.log('There was an error:', error.response)
-      })
     CourseServices.getCourses()
       .then(response => {
         this.courses = response.data
@@ -58,12 +48,10 @@ export default {
   },
   methods: {
     toggle () {
-        this.active = !this.active},
-        cancel() {
-        this.$router.push({ name: 'adminmenu' });
-      }
+      this.active = !this.active},
+    cancel() {
+      this.$router.push({ name: 'adminmenu' });
     }
-  
-
+  }
 }
 </script>
