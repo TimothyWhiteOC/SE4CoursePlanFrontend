@@ -35,7 +35,8 @@ export default {
     UserServices.getUser()
       .then(response => {
         this.user = response.data.user;
-        console.log(this.user);
+        console.log("user:");
+        console.log(this.user.role);
       })
       .catch(error => {
         console.log('There was an error:', error.response)
