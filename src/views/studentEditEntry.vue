@@ -46,10 +46,7 @@
 <script>
 import StudentServices from '@/services/StudentServices.js'
 
-
 import DropDownMenu from '../components/DropDownMenu.vue'
-
-
 
 export default {
   props: ['studentID'],
