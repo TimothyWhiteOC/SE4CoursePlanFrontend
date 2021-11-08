@@ -12,7 +12,7 @@
       <div v-if="active">
         <div class="dropdown-content">
           <a v-for="link in activeLinks" :key="link.link">
-            <router-link :to="{ name: link.link}">{{link.displayText}}</router-link></a>
+            <router-link :to="{ name: link.link, params: link.params }">{{link.displayText}}</router-link></a>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      user: {},
+      user: getStore('user') || {role: 'none'},
       active: false,
       activeLinks: [],
       allLinksByRole: [
@@ -51,7 +51,7 @@ export default {
           roles: ['admin', 'advisor']
         },
         {
-          link: 'listStudents',
+          link: 'listAdvisors',
           displayText: 'Search for Advisors',
           roles: ['admin', 'advisor']
         },
@@ -62,26 +62,33 @@ export default {
           roles: ['admin']
         },
         {
-          link: 'listAdvisors',
+          link: 'listStudents',
           displayText: 'Search for Students',
           roles: ['admin', 'advisor']
+        },
+        {
+          link: 'coursePlan',
+          params: {studentID: getStore('user').id || 0},
+          displayText: 'View Course plan',
+          roles: ['student']
         }
       ]
     }
   },
   created() {
-    var user = getStore("user");
-    if (user == null) this.role = 'none';
-    else this.role = user.role;
-    console.log(this.role);
-    this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.role));
+    this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.user.role));
   },
   methods: {
     toggle () {
-        this.active = !this.active
-      }
+      this.active = !this.active
+    }
+  },
+  computed: {
+    getStudentID() {
+      return {studentID: this.user.id || 0};
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
