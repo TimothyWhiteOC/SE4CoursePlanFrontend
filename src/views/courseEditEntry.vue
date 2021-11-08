@@ -115,7 +115,6 @@ export default {
        toggle () {
       this.active = !this.active},
     sendForm (){
-      
       if(!this.isEdit) this.addCourse();
       else this.updateCourse();
     },

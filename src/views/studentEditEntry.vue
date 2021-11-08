@@ -76,7 +76,13 @@
 import StudentServices from '@/services/StudentServices.js'
 
 export default {
-  props: ['studentID'],
+    props: [
+    'courseNo',
+    'studentID',
+    'semTerm',
+    'semYear'
+     ],  
+
   data() {
     return {
       message: null,

@@ -1,13 +1,11 @@
-import axios from "axios";
-
 var baseurl = "";
 if (process.env.NODE_ENV === "development") {
   baseurl = "http://localhost:8081";
 } else {
-  baseurl = "http://team2.eaglesoftwareteam.com:8081/";
+  baseurl = "/api/";
 }
 
-const apiClient = axios.create({
+export default {
   baseURL: baseurl,
   headers: {
     Accept: "application/json",
@@ -29,23 +27,4 @@ const apiClient = axios.create({
     }
     return data;
   }
-});
-
-export default {
-  getAdvisors() {
-    return apiClient.get("/advisors/");
-  },
-
-  getAdvisor(advisorID) {
-    return apiClient.get("/advisors/" + advisorID);
-  },
-  deleteAdvisor(advisorID) {
-    return apiClient.delete("/advisors/" + advisorID);
-  },
-  addAdvisor(advisor) {
-    return apiClient.post("/advisors/", advisor);
-  },
-  updateAdvisor(advisorID, advisor) {
-    return apiClient.put("/advisors/" + advisorID, advisor);
-  }
-};
+}

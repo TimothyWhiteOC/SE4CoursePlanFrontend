@@ -31,21 +31,22 @@ const apiClient = axios.create({
   }
 });
 
+// it is possible not every method will be used
 export default {
-  getAdvisors() {
-    return apiClient.get("/advisors/");
+  getSemesters() {
+    return apiClient.get("/semesters/");
   },
 
-  getAdvisor(advisorID) {
-    return apiClient.get("/advisors/" + advisorID);
+  getSemester(year, term) {
+    return apiClient.get("/semesters/" + studentID);
   },
-  deleteAdvisor(advisorID) {
-    return apiClient.delete("/advisors/" + advisorID);
+  deleteSemester(year, term) {
+    return apiClient.delete("/students/" + studentID);
   },
-  addAdvisor(advisor) {
-    return apiClient.post("/advisors/", advisor);
+  addSemester(semester) {
+    return apiClient.post("/students/", semester);
   },
-  updateAdvisor(advisorID, advisor) {
-    return apiClient.put("/advisors/" + advisorID, advisor);
+  updateSemester(year, term, semester) {
+    return apiClient.put("/students/" + studentID, semester);
   }
 };
