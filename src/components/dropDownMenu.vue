@@ -51,7 +51,7 @@ export default {
           roles: ['admin', 'advisor']
         },
         {
-          link: 'listStudents',
+          link: 'listAdvisors',
           displayText: 'Search for Advisors',
           roles: ['admin', 'advisor']
         },
@@ -62,7 +62,7 @@ export default {
           roles: ['admin']
         },
         {
-          link: 'listAdvisors',
+          link: 'listStudents',
           displayText: 'Search for Students',
           roles: ['admin', 'advisor']
         },
