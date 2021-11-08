@@ -71,20 +71,21 @@ const routes = [
     name: 'coursePlan',
     props: true,
     component: coursePlan
-  }
-  
-  /*,
-  {
-    path: '/studentMenu/:studentID',
-    name: 'studentMenu',
-    props: true,
-    component: studentMenu
   },
   {
-    path: '/adminmenu',
-    name: 'adminmenu',
-    component: adminmenu
-  }*/
+
+    path: '/classForStudent/:studentID/:semTerm/:semYear/',
+    name: 'classForStudent',
+    component: classForStudent
+
+  },
+  {
+    path: '/stucourseEditEntry/:studentID/:semTerm/:semYear/:courseNo',
+    name: 'stucourseEditEntry',
+    props: true,
+    component: stucourseEditEntry
+  },
+ 
 ]
 
 

@@ -5,6 +5,7 @@
     <br>
     {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
+       <button @click='deleteCourse(course.courseNo)'>Delete</button>
   </div>
     
 
@@ -17,6 +18,11 @@ export default {
   name: 'StudentCourseDisplay',
   props: {
     course: Object
+  },
+  methods: {   
+    deleteCourse(courseNum){
+      this.$emit('courseDeleted', courseNum)
+    }
   }
 }
 </script>

@@ -49,8 +49,19 @@ import StudentServices from '@/services/StudentServices.js'
 import DropDownMenu from '../components/DropDownMenu.vue'
 
 export default {
+
   props: ['studentID'],
   components: { DropDownMenu },
+
+  /*
+    props: [
+    'courseNo',
+    'studentID',
+    'semTerm',
+    'semYear'
+     ],
+  */    
+
   data() {
     return {
       message: null,

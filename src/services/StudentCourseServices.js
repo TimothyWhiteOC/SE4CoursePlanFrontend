@@ -19,4 +19,6 @@ export default {
   updateStudentCourse(studentID, courseNo, sCourse) {
     return apiClient.put("/students/" + studentID + "/courses/", sCourse);
   }
+
+  //add a scourse object 
 };

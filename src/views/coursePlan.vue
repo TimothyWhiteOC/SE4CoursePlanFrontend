@@ -1,16 +1,19 @@
 <template>
   <div>
-    <drop-down-menu pageName="Course Plan"/>
-    <div>
-      <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
-      <button v-on:click= "makePDF">Save PDF</button>
-      <button v-on:click= "cancel">Back</button>
-      <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
-      <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
-      <br>
-      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester"/>
-    </div>
+    <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
+    <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
+    <button class = "buttonPrint button"  v-on:click= "cancel">Back</button>
+    <button class = "buttonPrint button"  v-on:click= "addClass">Add Class</button>
+
+    <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
+    <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
+    <br>
+
+    <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="coursedeleted"/>
+
+
   <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
+
   </div>
 </template>
 
@@ -128,50 +131,17 @@ export default {
 
     if (this.totalHours > 0) this.GPA = (this.undivGPA / this.totalHours).toFixed(2);
     if (this.semMajorHours > 0) this.majorGPA = (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
-
-
-    /*
-    // add the sort later
-     semesters.sort(function(a, b) 
-      {
-        if a.
-
-        return 0;
-      }
-    );
-
-    // calculate all necessary values;
-    gpa
-
-    // so, this was old
-    
-    for (sCourse in studentCourses) {
-      currentCourseNo = sCourse.courseNo;
-      // sort, then iterate through, change semester when new semester
-      // iterate through, get all semester
-      // filter
-
-      // sCourse = {};
-      // https://www.w3schools.com/jsref/jsref_find.asp
-      // sCourse = studentCourses.find(getCreditedCourse);
-      // https://www.w3docs.com/snippets/javascript/how-to-remove-an-element-from-an-array-in-javascript.html
-      semester = {};
-      semester = semesters.find(getSemesterExists);
-      if ()
-      this.semesters.push(
-        {
-          term = sCourse.term,
-          year = sCourse.year,
-          gpa = "",
-          totalHours = 0,
-          courses  = {}
-        }
-      );
-    } */
   },
   methods: {
     cancel() {
-      this.$router.push({ name: 'menu' });
+      this.$router.push({ name: 'mainmenu' });
+    },
+    coursedeleted(currentCourse){
+ 
+      StudentCourseServices.deleteStudentCourse(this.studentID, currentCourse);
+        //this.$delete;
+        // I cant get this to work without it not relouding
+        this.$router.go()
     },
     // may need to install jspdf, autotable
     // https://stackoverflow.com/questions/54069884/installing-jspdf-using-npm-command
@@ -179,6 +149,9 @@ export default {
     // or may need to import
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
+    addClass() {
+      this.$router.push({ name: 'classForStudent' });
+    },
     makePDF() {
       const columns = [
         { title: "Course No.", dataKey: "courseNo" },
@@ -193,7 +166,7 @@ export default {
       });
       // text is placed using x, y coordinates
       // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_todatestring
-      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + " Course Plan as of " + new Date().toDateString(), 0.5, 1.0);
+      doc.setFontSize(16).text(this.student.fName + " " + this.student.lName + "Course Plan as of " + new Date().toDateString(), 0.5, 1.0);
       // create a line under heading 
       doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
       // overall Data
@@ -218,7 +191,7 @@ export default {
       }
       
       // Creating footer and saving file
-      doc.save(`${this.student.fName + this.student.lName}CoursePlan.pdf`);
+      doc.save(`${this.student.fName + this.student.lName} CoursePlan.pdf`);
     }
   }
 }
