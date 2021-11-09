@@ -136,11 +136,7 @@ export default {
     if (this.semMajorHours > 0) this.majorGPA = (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
   },
   methods: {
-    cancel() {
-      this.$router.push({ name: 'mainmenu' });
-    },
     coursedeleted(currentCourse){
- 
       StudentCourseServices.deleteStudentCourse(this.studentID, currentCourse);
         //this.$delete;
         // I cant get this to work without it not relouding
@@ -153,7 +149,7 @@ export default {
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
     addClass() {
-      this.$router.push({ name: 'classForStudent' });
+      this.$router.push({ name: 'classForStudent',  });
     },
     makePDF() {
       const columns = [

@@ -73,12 +73,12 @@ const routes = [
     component: coursePlan
   },
   {
-    path: '/student/:studentID/classes/:semTerm/:semYear/',
+    path: '/students/:studentID/courses/:semTerm/:semYear/',
     name: 'classForStudent',
     component: classForStudent
   },
   {
-    path: '/student/:studentID/editCourse/:semTerm/:semYear/:courseNo',
+    path: '/students/:studentID/editCourse/:semTerm/:semYear/:courseNo',
     name: 'studentCourseEditEntry',
     props: true,
     component: studentCourseEditEntry
