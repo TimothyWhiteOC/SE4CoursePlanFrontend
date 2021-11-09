@@ -1,19 +1,22 @@
 <template>
   <div>
-    <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
-    <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
-    <button class = "buttonPrint button"  v-on:click= "cancel">Back</button>
-    <button class = "buttonPrint button"  v-on:click= "addClass">Add Class</button>
+    <drop-down-menu pageName="Course Plan"/>
+    <div>
+      <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
+      <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
+      <button class = "buttonPrint button"  v-on:click= "cancel">Back</button>
+      <button class = "buttonPrint button"  v-on:click= "addClass">Add Class</button>
 
-    <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
-    <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
-    <br>
+      <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
+      <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
+      <br>
 
-    <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="coursedeleted"/>
+      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="coursedeleted"/>
 
 
-  <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
+    <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
 
+    </div>
   </div>
 </template>
 
