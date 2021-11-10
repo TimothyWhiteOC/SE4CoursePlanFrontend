@@ -4,7 +4,6 @@
     <div>
       <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
       <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
-      <button class = "buttonPrint button"  v-on:click= "cancel">Back</button>
       <button class = "buttonPrint button"  v-on:click= "addClass">Add Class</button>
 
       <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
@@ -149,7 +148,7 @@ export default {
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
     addClass() {
-      this.$router.push({ name: 'classForStudent',  });
+      this.$router.push({ name: 'classForStudent', params: {studentID: getStore('user').id} });
     },
     makePDF() {
       const columns = [
