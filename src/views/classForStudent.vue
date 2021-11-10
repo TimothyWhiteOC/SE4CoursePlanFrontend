@@ -9,7 +9,7 @@
 
       <!-- <button v-on:click= "cancel">Cancel</button>-->
 
-      <display-class-for-student v-for="course in filteredCourses" :key="course.courseNo" :course="course" @courseSelected="courseselected"  /> 
+      <display-class-for-student v-for="course in filteredCourses" :key="course.courseNo" :course="course" @courseSelected="courseSelected"  /> 
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@
 <script>
 
 import CourseServices from '@/services/CourseServices.js'
-//import StudentCourseServices from "@/services/StudentCourseServices.js";
+import StudentCourseServices from "@/services/StudentCourseServices.js";
 import displayClassForStudent from '../components/displayClassForStudent.vue';
 
 export default {
@@ -33,26 +33,19 @@ export default {
       courses: [],
       search:'Accounting',
       active:false,
-      scourse: 
-      {
-        studentID: this.studentID,      
-        courseNo: this.courseNo,
-        semTerm: this.semTerm,
-        semYear: this.semYear,
-        gradey: ""
-      },
-
     };
   },
   created() {
- 
-        CourseServices.getCourses()
+      CourseServices.getCourses()
       .then(response => {
         this.courses = response.data
       })
       .catch(error => {
         console.log('There was an error:', error.response)
       })
+      if (this.semTerm == null) {
+        console.log("help");
+      }
   },
   computed:{
     filteredCourses: function(){
@@ -62,35 +55,36 @@ export default {
     }
   },
   methods: {
-    courseselected(currentCourse){
+    courseSelected(currentCourse){
+      var sCourse = {
+          studentID: this.studentID,      
+          courseNo: currentCourse,
+          semTerm: this.semTerm,
+          semYear: this.semYear,
+          grade: ""
+        };
 
-      currentCourse;
-   /*   window.confirm(
-        'Sure you wanna add ' + this.studentID + '? It\'ll be gone forever!'
-      )
-    StudentCourseServices.addStudentCourse(this.studentID, this.scourse)
+      console.log("test: " + sCourse.studentID);
+      console.log("test: " + sCourse.courseNo);
+      console.log("test: " + sCourse.semTerm);
+      console.log("test: " + sCourse.semYear);
+      console.log("test: " + sCourse.grade);
+      StudentCourseServices.addStudentCourse(this.studentID, sCourse)
         .then(() => {
-          this.$router.push({ name: 'coursePlan' })
+          this.$router.push({ name: 'coursePlan', params: {studentID: this.studentID} })
         })
         .catch(error => {
           this.message = error.message;
           console.log(error);
-        })     */
-        
-      this.$router.push({ name: 'stucourseEditEntry' , params: {courseNo: currentCourse}});
-
-  
-    } ,
+        })
+      //this.$router.push({ name: 'studentCourseEditEntry' , params: {courseNo: currentCourse}});
+    },
     toggle () {
-        this.active = !this.active},
-
-  
-        cancel() {
+      this.active = !this.active},
+    cancel() {
       this.$router.push({ name: 'coursePlan' });
     }
-    
-  
-}
+  }
 }
 
 </script>

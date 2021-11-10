@@ -85,7 +85,7 @@ const routes = [
     component: classForStudent
   },
   {
-    path: '/students/:studentID/editCourse/:semTerm/:semYear/:courseNo',
+    path: '/students/:studentID/editCourse/:courseNo',
     name: 'studentCourseEditEntry',
     props: true,
     component: studentCourseEditEntry

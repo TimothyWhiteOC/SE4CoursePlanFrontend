@@ -5,15 +5,15 @@
 
     <span>{{course.courseNo}} {{course.name}} </span>
 
-   <router-link :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
+    <!-- <router-link :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
     <button>ignore</button>
     </router-link> 
   
-  <!--  <button><router-link :to="{ name: 'stucourseEditEntry', params:{courseNo : course.courseNo}}">add</router-link></button>
+    <button><router-link :to="{ name: 'stucourseEditEntry', params:{courseNo : course.courseNo}}">add</router-link></button>
     <br>
     <br>-->
 
-       <button @click='showCourse(course.courseNo)'>Add</button>
+    <button @click='showCourse(course.courseNo)'>Add</button>
 
 
     <!--<button> <router-link :to="{ name: 'stucourseEditEntry', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
@@ -78,7 +78,6 @@ export default {
     }
   },
   methods: {
-
     toggle () {
         this.active = !this.active},
         sendForm (){

@@ -14,10 +14,10 @@ export default {
     return apiClient.delete("/students/" + studentID + "/courses/" + courseNo);
   },
   addStudentCourse(studentID, sCourse) {
-    return apiClient.post("/students/" + studentID + "/courses/", sCourse);
+    return apiClient.post("/students/" + studentID + "/courses", sCourse);
   },
   updateStudentCourse(studentID, courseNo, sCourse) {
-    return apiClient.put("/students/" + studentID + "/courses/", sCourse);
+    return apiClient.put("/students/" + studentID + "/courses/" + courseNo, sCourse);
   }
 
   //add a scourse object 
