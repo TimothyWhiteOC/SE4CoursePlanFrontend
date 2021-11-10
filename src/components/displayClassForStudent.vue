@@ -13,11 +13,11 @@
     <br>
     <br>-->
 
-       <button @click='showCourse(course.courseNo)'>Choose This Course</button>
+       <button @click='showCourse(course.courseNo)'>Add</button>
 
 
-    <button> <!--<router-link :to="{ name: 'stucourseEditEntry', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
-     edit </router-link> --> Nowhere</button>
+    <!--<button> <router-link :to="{ name: 'stucourseEditEntry', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
+     edit </router-link>  Nowhere</button>-->
 
   </div>
 
