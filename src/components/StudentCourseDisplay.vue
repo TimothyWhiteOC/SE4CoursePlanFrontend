@@ -5,7 +5,8 @@
     <br>
     {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
-       <button @click='deleteCourse(course.courseNo)'>Delete</button>
+        <button @click='editCourse(course.courseNo)'>Edit</button>
+        <button @click='deleteCourse(course.courseNo)'>Delete</button>
   </div>
     
 
@@ -22,6 +23,9 @@ export default {
   methods: {   
     deleteCourse(courseNum){
       this.$emit('courseDeleted', courseNum)
+    },
+    editCourse(courseNum){
+      this.$emit('editCourse', courseNum)
     }
   }
 }

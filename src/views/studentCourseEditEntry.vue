@@ -12,20 +12,20 @@
       <br>      <br>
 
       <label for = "studentID">Student ID: &nbsp; &nbsp; &nbsp; &nbsp;&emsp;&emsp;&emsp;</label>
-      <input type = "text" v-model= "scourse.studentID" placeholder=""/>
+      <input type = "text" v-model= "sCourse.studentID" placeholder=""/>
       <br>      <br>
 
       <label for = "courseNo">Course Number:&emsp;&emsp;&emsp;</label>
-      <input type = "text" v-model= "scourse.courseNo" placeholder=""/>
+      <input type = "text" v-model= "sCourse.courseNo" placeholder=""/>
       <br>      <br>
 
       
       <label for = "semTerm">Semester Term:&emsp;&emsp; &emsp;</label>
-      <input type = "text" v-model= "scourse.semTerm" placeholder=""/>
+      <input type = "text" v-model= "sCourse.semTerm" placeholder=""/>
       <br>      <br>
 
       <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
-      <input type = "text" v-model= "scourse.semYear" placeholder=""/>
+      <input type = "text" v-model= "sCourse.semYear" placeholder=""/>
       <br>
       <br>
 
@@ -49,47 +49,39 @@ import StudentCourseServices from "@/services/StudentCourseServices.js";
 import CourseServices from "@/services/CourseServices.js";
 
 export default {
- 
-    props: [
+  props: [
     'courseNo',
     'studentID',
-    'semTerm',
-    'semYear'
   ],
-   data() {
+  data() {
     return {
       message: null,
-      scourse: 
-      {
-        studentID: this.studentID,      
-        courseNo: this.courseNo,
-        semTerm: this.semTerm,
-        semYear: this.semYear,
-        grade: ""
-      },
-        isEdit: false,
+      sCourse: {},
+      isEdit: false,
       active : false
-
     }},
 
-  
- methods: {
+  created() { 
+    StudentCourseServices.getStudentCourse(this.studentID, this.courseNo)
+    .then(response => {
+        this.sCourse = response.data[0]
+      })
+      .catch(error => {
+        console.log('There was an error:', error.response)
+      })
+    console.log("Help: ");
+    console.log(this.sCourse.courseNo);
+  },
+  methods: {
     toggle () {
       this.active = !this.active},
     sendForm (){
       if(!this.isEdit) this.addCourseToStudent();
       else this.addCourseToStudent();
     },  
-      created() {
-    if (this.scourse != null){
-     window.confirm(
-        'Sure you wanna add ' + this.studentID + '? It\'ll be gone forever!'
-      )
-    }
-     },
     addCourseToStudent() {
     //  this.course.courseNo = this.courseNo;      
-      StudentCourseServices.addStudentCourse(this.studentID, this.scourse)
+      StudentCourseServices.addStudentCourse(this.studentID, this.sCourse)
         .then(() => {
           this.$router.push({ name: 'coursePlan' })
         })
@@ -100,16 +92,16 @@ export default {
     },
 
 
-   addCourse() {
-      this.course.courseNo = this.course;
-      CourseServices.addCourse(this.course)
-        .then(() => {
-          this.$router.push({ name: 'listCourses' })
-        })
-        .catch(error => {
-          this.message = error.message;
-          console.log(error);
-        })
+  addCourse() {
+    this.course.courseNo = this.course;
+    CourseServices.addCourse(this.course)
+      .then(() => {
+        this.$router.push({ name: 'listCourses' })
+      })
+      .catch(error => {
+        this.message = error.message;
+        console.log(error);
+      })
     },
 
     cancel() {

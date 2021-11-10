@@ -10,7 +10,7 @@
       <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
       <br>
 
-      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="coursedeleted"/>
+      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
 
 
     <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
@@ -81,8 +81,6 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-
-    console.log("mC: " + majorCourses);
     // https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/
     // https://www.w3docs.com/snippets/javascript/how-to-append-an-item-to-an-array-in-javascript.html
     // https://www.w3schools.com/js/js_objects.asp
@@ -135,11 +133,16 @@ export default {
     if (this.semMajorHours > 0) this.majorGPA = (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
   },
   methods: {
-    coursedeleted(currentCourse){
+    courseDeleted(currentCourse){
       StudentCourseServices.deleteStudentCourse(this.studentID, currentCourse);
+      console.log("Delete: " + currentCourse);
         //this.$delete;
         // I cant get this to work without it not relouding
-        this.$router.go()
+      this.$router.go()
+    },
+    editCourse(currentCourse){
+      console.log("Edit: " + currentCourse);
+      this.$router.push({ name: 'studentCourseEditEntry', params: {studentID: this.studentID, courseNo: currentCourse} });
     },
     // may need to install jspdf, autotable
     // https://stackoverflow.com/questions/54069884/installing-jspdf-using-npm-command

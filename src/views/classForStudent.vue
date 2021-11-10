@@ -33,20 +33,16 @@ export default {
       courses: [],
       search:'Accounting',
       active: false,
-      
     };
   },
   created() {
-      CourseServices.getCourses()
-      .then(response => {
-        this.courses = response.data
-      })
-      .catch(error => {
-        console.log('There was an error:', error.response)
-      })
-      if (this.semTerm == null) {
-        console.log("help");
-      }
+    CourseServices.getCoursesBySemester(this.semTerm)
+    .then(response => {
+      this.courses = response.data
+    })
+    .catch(error => {
+      console.log('There was an error:', error.response)
+    })
   },
   computed:{
     filteredCourses: function(){

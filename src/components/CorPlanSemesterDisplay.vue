@@ -10,13 +10,13 @@
     <span>    Major Hours: {{semester.semMajorHours}}     Major GPA: {{semester.majorGPA}} </span>
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
-    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  @courseDeleted="coursedeleted"/>
+    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  @courseDeleted="courseDeleted" @editCourse="editCourse"/>
     <br>
-    <button> <router-link :to="{ name: 'classForStudentWTerm', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
+    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
      <p class = "color"> Add a course </p>
     </router-link> </button>
 
- <br> <br>
+ <br><br>
  
  </div>    
 </template>
@@ -31,8 +31,11 @@ export default {
     semester: Object
   },
   methods: {
-      coursedeleted(currentCourse){
-        this.$emit('courseDeleted', currentCourse)
+    courseDeleted(courseNum){
+      this.$emit('courseDeleted', courseNum)
+    },
+    editCourse(courseNum){
+      this.$emit('editCourse', courseNum)
     }
   }
 }

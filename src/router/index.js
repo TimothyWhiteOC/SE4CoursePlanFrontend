@@ -74,12 +74,6 @@ const routes = [
   },
   {
     path: '/students/:studentID/addCourse/:semTerm/:semYear/',
-    name: 'classForStudentWTerm',
-    props: true,
-    component: classForStudent
-  },
-  {
-    path: '/students/:studentID/addCourse/',
     name: 'classForStudent',
     props: true,
     component: classForStudent
