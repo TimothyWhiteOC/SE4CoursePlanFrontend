@@ -148,7 +148,7 @@ export default {
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
     addClass() {
-      this.$router.push({ name: 'classForStudent', params: {studentID: getStore('user').id} });
+      this.$router.push({ name: 'classForStudent', params: {studentID: this.studentID} });
     },
     makePDF() {
       const columns = [
