@@ -12,7 +12,7 @@
     <br>
     <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  @courseDeleted="coursedeleted"/>
     <br>
-    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
+    <button> <router-link :to="{ name: 'classForStudentWTerm', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
      <p class = "color"> Add a course </p>
     </router-link> </button>
 

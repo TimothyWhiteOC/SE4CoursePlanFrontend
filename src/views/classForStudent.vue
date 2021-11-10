@@ -32,7 +32,8 @@ export default {
     return {
       courses: [],
       search:'Accounting',
-      active:false,
+      active: false,
+      
     };
   },
   created() {
@@ -61,7 +62,7 @@ export default {
           courseNo: currentCourse,
           semTerm: this.semTerm,
           semYear: this.semYear,
-          grade: ""
+          grade: "-"
         };
 
       console.log("test: " + sCourse.studentID);

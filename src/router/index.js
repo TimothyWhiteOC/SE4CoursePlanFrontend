@@ -74,7 +74,7 @@ const routes = [
   },
   {
     path: '/students/:studentID/addCourse/:semTerm/:semYear/',
-    name: 'classForStudent',
+    name: 'classForStudentWTerm',
     props: true,
     component: classForStudent
   },
