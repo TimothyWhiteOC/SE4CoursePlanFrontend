@@ -133,9 +133,10 @@ export default {
     if (this.semMajorHours > 0) this.majorGPA = (this.undivMajorGPA / this.totalMajorHours).toFixed(2);
   },
   methods: {
-    courseDeleted(currentCourse){
-      StudentCourseServices.deleteStudentCourse(this.studentID, currentCourse);
-      console.log("Delete: " + currentCourse);
+    courseDeleted(courseNo){
+      console.log("Delete: " + courseNo);
+      StudentCourseServices.deleteStudentCourse(this.studentID, courseNo);
+      
         //this.$delete;
         // I cant get this to work without it not relouding
       this.$router.go()

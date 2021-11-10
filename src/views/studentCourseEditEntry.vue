@@ -3,7 +3,6 @@
     <drop-down-menu pageName="Edit Student Course"/>
     <div class = "form">
         <form @submit.prevent="sendForm">    
-      <h2 v-if="this.isEdit">Edit {{this.course.name}}</h2>
       <p v-if="message">{{this.message}}</p>
 
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
@@ -46,7 +45,6 @@
 
 <script>
 import StudentCourseServices from "@/services/StudentCourseServices.js";
-import CourseServices from "@/services/CourseServices.js";
 
 export default {
   props: [
@@ -75,39 +73,22 @@ export default {
   methods: {
     toggle () {
       this.active = !this.active},
-    sendForm (){
-      if(!this.isEdit) this.addCourseToStudent();
-      else this.addCourseToStudent();
-    },  
-    addCourseToStudent() {
-    //  this.course.courseNo = this.courseNo;      
-      StudentCourseServices.addStudentCourse(this.studentID, this.sCourse)
+    sendForm () {
+      
+    },
+    updateCourse() {
+      StudentCourseServices.updateStudentCourse((this.studentID, this.sCourse)
         .then(() => {
-          this.$router.push({ name: 'coursePlan' })
+          this.$router.push({ name: 'coursePlan', params: {studentID: this.studentID} })
         })
         .catch(error => {
           this.message = error.message;
           console.log(error);
         })
-    },
-
-
-  addCourse() {
-    this.course.courseNo = this.course;
-    CourseServices.addCourse(this.course)
-      .then(() => {
-        this.$router.push({ name: 'listCourses' })
-      })
-      .catch(error => {
-        this.message = error.message;
-        console.log(error);
-      })
-    },
-
+    },  
     cancel() {
       this.$router.push({ name: 'coursePlan' });
     }
-    
   }
 }
  /* methods: {
