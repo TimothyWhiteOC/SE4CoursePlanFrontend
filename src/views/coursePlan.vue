@@ -138,7 +138,7 @@ export default {
       var that = this
       StudentCourseServices.deleteStudentCourse(this.studentID, courseNo)
         .then(function() {that.$router.go()});
-        // thanks Timothy
+        // thanks Timothy!
         //this.$delete;
         // I cant get this to work without it not relouding
       

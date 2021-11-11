@@ -61,24 +61,30 @@ export default {
 
   created() { 
     StudentCourseServices.getStudentCourse(this.studentID, this.courseNo)
-    .then(response => {
+      .then(response => {
         this.sCourse = response.data[0]
       })
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-    console.log("Help: ");
-    console.log(this.sCourse.courseNo);
   },
   methods: {
     toggle () {
       this.active = !this.active},
     sendForm () {
-      StudentCourseServices.updateStudentCourse(this.studentID, this.sCourse.courseNo, this.sCourse)
+      // console.log("student:");
+      // console.log(this.studentID);
+      // console.log("courseNo:");
+      // console.log(this.courseNo);
+      // console.log("course:");
+      // console.log(this.sCourse);
+      StudentCourseServices.updateStudentCourse(this.studentID, this.courseNo, this.sCourse)
         .then(() => {
+          //console.log("success");
           this.$router.push({ name: 'coursePlan', params: {studentID: this.studentID} })
         })
         .catch(error => {
+          //console.log("failure");
           this.message = error.message;
         })
     },
