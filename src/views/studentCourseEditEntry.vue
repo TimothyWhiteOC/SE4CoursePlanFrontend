@@ -74,18 +74,14 @@ export default {
     toggle () {
       this.active = !this.active},
     sendForm () {
-      
-    },
-    updateCourse() {
-      StudentCourseServices.updateStudentCourse((this.studentID, this.sCourse)
+      StudentCourseServices.updateStudentCourse(this.studentID, this.sCourse.courseNo, this.sCourse)
         .then(() => {
           this.$router.push({ name: 'coursePlan', params: {studentID: this.studentID} })
         })
         .catch(error => {
           this.message = error.message;
-          console.log(error);
         })
-    },  
+    },
     cancel() {
       this.$router.push({ name: 'coursePlan' });
     }

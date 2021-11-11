@@ -135,11 +135,13 @@ export default {
   methods: {
     courseDeleted(courseNo){
       console.log("Delete: " + courseNo);
-      StudentCourseServices.deleteStudentCourse(this.studentID, courseNo);
-      
+      var that = this
+      StudentCourseServices.deleteStudentCourse(this.studentID, courseNo)
+        .then(function() {that.$router.go()});
+        // thanks Timothy
         //this.$delete;
         // I cant get this to work without it not relouding
-      this.$router.go()
+      
     },
     editCourse(currentCourse){
       console.log("Edit: " + currentCourse);
