@@ -173,5 +173,20 @@ button:hover {
   color: white;
 }
 
+.buttonPrint {
+  border-radius: 0px;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial;
+  font-size: 17px;
+  color: #ffffff;
+  background-color: #4385ff98;
+  height: 60px;
+  width: 80px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 
 </style>

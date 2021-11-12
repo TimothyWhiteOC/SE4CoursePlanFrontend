@@ -60,12 +60,10 @@ export default {
         lName: "",
         dept: "",
         email: ""
-
       },
       isEdit: false,
       advisorNo: "",
       active: false
-
     };
   },
   created() {

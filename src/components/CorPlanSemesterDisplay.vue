@@ -10,14 +10,15 @@
     <span>    Major Hours: {{semester.semMajorHours}}     Major GPA: {{semester.majorGPA}} </span>
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
-    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"/>
+    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  @courseDeleted="courseDeleted" @editCourse="editCourse"/>
     <br>
+    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
+     <p class = "color"> Add a course </p>
+    </router-link> </button>
 
-  </div>
-    
-
-
-
+ <br><br>
+ 
+ </div>    
 </template>
 
 <script>
@@ -30,8 +31,12 @@ export default {
     semester: Object
   },
   methods: {
-
-    
+    courseDeleted(courseNum){
+      this.$emit('courseDeleted', courseNum)
+    },
+    editCourse(courseNum){
+      this.$emit('editCourse', courseNum)
+    }
   }
 }
 </script>
@@ -66,6 +71,9 @@ a {
   width: 70px;
     cursor: pointer;
 }
+.color{
+  color: white;
+}
 .courseDisp {
  /* padding: 10px; */
   margin-top: 20px;
@@ -81,17 +89,12 @@ a {
 }
 
 button {
+  text-decoration: none; /* no underline */
   border: none;
   padding: 0!important;
-  /*optional*/
-  font-family: arial;
-  font-size: 17px;
-  color: #ffffff;
-  background-color: #6e0000;
-  height: 30px;
-  width: 70px;
-  cursor: pointer;
-  margin-left: 10px;
+  font-size: 20px;
+  height: 75px;
+  width: 100px;
 }
 
 

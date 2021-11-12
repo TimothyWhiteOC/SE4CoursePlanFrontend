@@ -10,6 +10,10 @@ export default {
   getCourse(courseNo) {
     return apiClient.get("/courses/" + courseNo);
   },
+  getCoursesBySemester(term) {
+    console.log("hrelp");
+    return apiClient.get("/courses/semester/" + term);
+  },
   deleteCourse(courseNo) {
     return apiClient.delete("/courses/" + courseNo);
   },
@@ -20,5 +24,4 @@ export default {
   updateCourse(courseNo, course) {
     return apiClient.put("/courses/" + courseNo, course);
   }
-
 };

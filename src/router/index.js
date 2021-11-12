@@ -9,6 +9,9 @@ import listStudents from '../views/listStudents.vue'
 import listAdvisors from '../views/listAdvisors.vue'
 import coursePlan from '../views/coursePlan.vue'
 import login from '../views/loginPage.vue'
+import studentCourseEditEntry from '../views/studentCourseEditEntry.vue'
+import classForStudent from '../views/classForStudent.vue'
+
 import mainmenu from '../views/mainmenu.vue'
 import termSelect from '../views/termSelect.vue'
 
@@ -63,11 +66,9 @@ const routes = [
     component: listStudents
   },
   {
-
     path: '/listAdvisors',
     name: 'listAdvisors',
     component: listAdvisors
-
   },
   {
     path: '/coursePlan/:studentID',
@@ -75,12 +76,8 @@ const routes = [
     props: true,
     component: coursePlan
   },
-  {
-    path: '/students/:studentID/addCourse/:semTerm/:semYear/',
-    name: 'classForStudent',
-    props: true,
-    component: coursePlan
-  },
+
+  
   {
     path: '/',
     name: 'mainmenu',
@@ -91,20 +88,19 @@ const routes = [
     name: 'termSelect',
     props: true,
     component: termSelect
-  }
-  
-  /*,
+  } ,
   {
-    path: '/studentMenu/:studentID',
-    name: 'studentMenu',
+    path: '/students/:studentID/addCourse/:semTerm/:semYear/',
+    name: 'classForStudent',
     props: true,
-    component: studentMenu
+    component: classForStudent
   },
   {
-    path: '/adminmenu',
-    name: 'adminmenu',
-    component: adminmenu
-  }*/
+    path: '/students/:studentID/editCourse/:courseNo',
+    name: 'studentCourseEditEntry',
+    props: true,
+    component: studentCourseEditEntry
+  }
 ]
 
 
