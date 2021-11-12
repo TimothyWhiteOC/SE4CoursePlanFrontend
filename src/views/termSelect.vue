@@ -1,6 +1,6 @@
 
 <template>
-    <drop-down-menu pageName="Course Plan"/>
+    <drop-down-menu pageName="Select a Term"/>
 
     <br><br>    <br><br>
     <label for = "semYear">Semester Year: &emsp;&emsp;</label>
@@ -25,7 +25,7 @@
 import DropDownMenu from '../components/DropDownMenu.vue'
 
   export default {
-     props: [],
+  props: ['studentID'],
   components: { DropDownMenu },
   data() {
     return {
@@ -35,7 +35,7 @@ import DropDownMenu from '../components/DropDownMenu.vue'
             semTerm: "FA"
         },
 
-        isEdit: false,
+        // isEdit: false,
         active: false
     };
   },
@@ -51,7 +51,8 @@ import DropDownMenu from '../components/DropDownMenu.vue'
         this.semester.semTerm = "SP";
       },
       submit(){
-        this.$router.push({ name: '' , params: { semYear: this.semester.semYear, semTerm: this.semester.semTerm }})
+        console.log("debug: ");
+        this.$router.push({ name: 'classForStudent' , params: {studentID: this.studentID,  semTerm: this.semester.semTerm, semYear: this.semester.semYear}})
       }
     }
   }

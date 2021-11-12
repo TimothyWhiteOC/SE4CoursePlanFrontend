@@ -76,6 +76,12 @@ const routes = [
     component: coursePlan
   },
   {
+    path: '/students/:studentID/addCourse/:semTerm/:semYear/',
+    name: 'classForStudent',
+    props: true,
+    component: coursePlan
+  },
+  {
     path: '/',
     name: 'mainmenu',
     component: mainmenu
@@ -83,6 +89,7 @@ const routes = [
   {
     path: '/termSelect/:studentID',
     name: 'termSelect',
+    props: true,
     component: termSelect
   }
   
