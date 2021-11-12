@@ -9,6 +9,9 @@ import listStudents from '../views/listStudents.vue'
 import listAdvisors from '../views/listAdvisors.vue'
 import coursePlan from '../views/coursePlan.vue'
 import login from '../views/loginPage.vue'
+import mainmenu from '../views/mainmenu.vue'
+import termSelect from '../views/termSelect.vue'
+
 
 const routes = [
   {
@@ -71,6 +74,23 @@ const routes = [
     name: 'coursePlan',
     props: true,
     component: coursePlan
+  },
+  {
+    path: '/students/:studentID/addCourse/:semTerm/:semYear/',
+    name: 'classForStudent',
+    props: true,
+    component: coursePlan
+  },
+  {
+    path: '/',
+    name: 'mainmenu',
+    component: mainmenu
+  },
+  {
+    path: '/termSelect/:studentID',
+    name: 'termSelect',
+    props: true,
+    component: termSelect
   }
   
   /*,
