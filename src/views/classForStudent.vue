@@ -2,7 +2,6 @@
   <div>
     <drop-down-menu pageName="Add a Course"/>
     <div>
-      <h2 class = "title">List of Courses to add</h2>
      
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
       <br>
@@ -20,18 +19,21 @@
 import CourseServices from '@/services/CourseServices.js'
 import StudentCourseServices from "@/services/StudentCourseServices.js";
 import displayClassForStudent from '../components/displayClassForStudent.vue';
+import DropDownMenu from '../components/DropDownMenu.vue';
+
 
 export default {
-  components: { displayClassForStudent },
+  components: { displayClassForStudent, DropDownMenu },
     props: [
     'studentID',
     'semTerm',
     'semYear'
   ],
+
   data() {
     return {
       courses: [],
-      search:'Accounting',
+      search:'',
       active: false,
     };
   },

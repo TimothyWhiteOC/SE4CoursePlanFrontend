@@ -1,9 +1,9 @@
 <template>
    <div>
     <drop-down-menu pageName="Edit Student Course"/>
-    <div class = "form">
-        <form @submit.prevent="sendForm">    
-      <p v-if="message">{{this.message}}</p>
+    <!--<div class = "form">-->
+       <!-- <form @submit.prevent="sendForm">  -->  
+     <!-- <p v-if="message">{{this.message}}</p>-->
 
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
 
@@ -11,23 +11,41 @@
       <br>      <br>
 
       <label for = "studentID">Student ID: &nbsp; &nbsp; &nbsp; &nbsp;&emsp;&emsp;&emsp;</label>
-      <input type = "text" v-model= "sCourse.studentID" placeholder=""/>
+      <label type = "text" placeholder="">{{this.sCourse.studentID}}</label>
       <br>      <br>
 
       <label for = "courseNo">Course Number:&emsp;&emsp;&emsp;</label>
-      <input type = "text" v-model= "sCourse.courseNo" placeholder=""/>
+      <label type = "text" placeholder="">{{this.sCourse.courseNo}}</label>
       <br>      <br>
 
       
       <label for = "semTerm">Semester Term:&emsp;&emsp; &emsp;</label>
-      <label type = "text" placeholder="">{{this.sCourse.semYear}}</label>
+      <label type = "text" placeholder="">{{this.sCourse.semTerm}}</label>
       <br>      <br>
 
       <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
       <label type = "text" placeholder="">{{this.sCourse.semYear}}</label>
+      <br>      <br>
+ <!--     <label for = "semYear">Grade: &emsp;&emsp;&emsp; </label>
+      <input type = "text" v-model= "sCourse.grade" placeholder=""/>-->
+      <div class="container">
+              <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
+        <button class = "drop" @click="toggle">{{this.sCourse.grade}}</button>
+        <div v-if="active">
+          <button class = "drop2" v-on:click="aSelected()">A</button>
+          <br>
+          <button class = "drop2" v-on:click="bSelected()">B</button>
+          <br>
+          <button class = "drop2" v-on:click="cSelected()">C</button>
+          <br>
+          <button class = "drop2" v-on:click="dSelected()">D</button>
+          <br>
+          <button class = "drop2" v-on:click="fSelected()">F</button>
+          <br>
+          <button class = "drop2" v-on:click="noneSelected()">-</button>
+        </div>
+      </div>
 
-      <label for = "semYear">Grade: &emsp;&emsp;&emsp; </label>
-      <input type = "text" v-model= "sCourse.grade" placeholder=""/>
       <br>
       <br>
 
@@ -37,28 +55,31 @@
       <br>
       <br>-->
 
-      <button type="submit">Submit</button>
+      <button v-on:click= "submit" >Submit</button> 
       <button v-on:click= "cancel">Cancel</button>
 
-      </form>
+     <!-- </form>-->
     </div>
-  </div>
+ <!-- </div> -->
 </template>
 
 
 <script>
 import StudentCourseServices from "@/services/StudentCourseServices.js";
+import DropDownMenu from '../components/DropDownMenu.vue'
 
 export default {
+
   props: [
     'courseNo',
     'studentID',
   ],
+  components: { DropDownMenu },
   data() {
     return {
       message: null,
-      sCourse: {},
-      // isEdit: false,
+  
+      sCourse:{},
       active : false
     }},
 
@@ -72,9 +93,30 @@ export default {
       })
   },
   methods: {
-    toggle () {
-      this.active = !this.active},
-    sendForm () {
+     toggle () {
+        this.active = !this.active
+      },
+
+      aSelected(){
+        this.sCourse.grade = "A";
+      },
+      bSelected(){
+        this.sCourse.grade = "B";
+      },
+      cSelected(){
+        this.sCourse.grade = "C";
+      },
+      dSelected(){
+        this.sCourse.grade = "D";
+      },
+      fSelected(){
+        this.sCourse.grade = "F";
+      },
+      noneSelected(){
+        this.sCourse.grade = "-";
+      },
+
+    submit() {
       // console.log("student:");
       // console.log(this.studentID);
       // console.log("courseNo:");
@@ -116,7 +158,25 @@ export default {
     }
   }*/
 
+
 </script>
+<style>
+.drop {
+    color: aliceblue;
+    background-color: rgb(82, 148, 185);
+}
+.drop2 {
+    color: aliceblue;
+    background-color: rgb(151, 186, 206);
+    margin-right: -166px;
+}
+
+.container{
+    height: 190px;
+    margin: auto;
+ /*   background-color: black;*/
+}
+</style>
 
 
 
