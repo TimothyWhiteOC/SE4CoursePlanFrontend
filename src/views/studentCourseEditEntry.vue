@@ -7,7 +7,7 @@
 
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
 
-      <textarea v-if="isEdit" readonly id = "advisorNo" v-model="advisorNo"></textarea>
+      <!--<textarea v-if="isEdit" readonly id = "advisorNo" v-model="advisorNo"></textarea>-->
       <br>      <br>
 
       <label for = "studentID">Student ID: &nbsp; &nbsp; &nbsp; &nbsp;&emsp;&emsp;&emsp;</label>
@@ -20,11 +20,14 @@
 
       
       <label for = "semTerm">Semester Term:&emsp;&emsp; &emsp;</label>
-      <input type = "text" v-model= "sCourse.semTerm" placeholder=""/>
+      <label type = "text" placeholder="">{{this.sCourse.semYear}}</label>
       <br>      <br>
 
       <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
-      <input type = "text" v-model= "sCourse.semYear" placeholder=""/>
+      <label type = "text" placeholder="">{{this.sCourse.semYear}}</label>
+
+      <label for = "semYear">Grade: &emsp;&emsp;&emsp; </label>
+      <input type = "text" v-model= "sCourse.grade" placeholder=""/>
       <br>
       <br>
 
@@ -55,7 +58,7 @@ export default {
     return {
       message: null,
       sCourse: {},
-      isEdit: false,
+      // isEdit: false,
       active : false
     }},
 
