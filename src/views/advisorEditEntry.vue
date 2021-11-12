@@ -33,6 +33,8 @@
         <button type="submit">Submit</button>
         <button v-on:click= "cancel">Cancel</button>
 
+        <input type="button" value="Back Button" onclick="history.go(-1)">
+
       </form>
     </div>
   </div>

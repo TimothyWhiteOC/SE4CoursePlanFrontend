@@ -1,9 +1,7 @@
 <template>
    <div>
     <drop-down-menu pageName="Edit Student Course"/>
-    <!--<div class = "form">-->
-       <!-- <form @submit.prevent="sendForm">  -->  
-     <!-- <p v-if="message">{{this.message}}</p>-->
+
 
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
 
@@ -16,17 +14,18 @@
 
       <label for = "courseNo">Course Number:&emsp;&emsp;&emsp;</label>
       <label type = "text" placeholder="">{{this.sCourse.courseNo}}</label>
+
       <br>      <br>
 
       
       <label for = "semTerm">Semester Term:&emsp;&emsp; &emsp;</label>
       <label type = "text" placeholder="">{{this.sCourse.semTerm}}</label>
+
       <br>      <br>
 
       <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
       <label type = "text" placeholder="">{{this.sCourse.semYear}}</label>
       <br>      <br>
- <!--     <label for = "semYear">Grade: &emsp;&emsp;&emsp; </label>
       <input type = "text" v-model= "sCourse.grade" placeholder=""/>-->
       <div class="container">
               <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
@@ -46,21 +45,14 @@
         </div>
       </div>
 
-      <br>
-      <br>
 
-     <!--  <label for = "grade">Grade: &nbsp;&emsp;&nbsp;&emsp; &nbsp; &nbsp;&emsp;&emsp;&emsp; </label>
-      <input type = "text" v-model= "scourse.grade" placeholder=""/>
       <br>
       <br>
-      <br>-->
 
       <button v-on:click= "submit" >Submit</button> 
       <button v-on:click= "cancel">Cancel</button>
 
-     <!-- </form>-->
-    </div>
- <!-- </div> -->
+      </div>   
 </template>
 
 
@@ -69,6 +61,7 @@ import StudentCourseServices from "@/services/StudentCourseServices.js";
 import DropDownMenu from '../components/DropDownMenu.vue'
 
 export default {
+
 
   props: [
     'courseNo',
@@ -80,6 +73,7 @@ export default {
       message: null,
   
       sCourse:{},
+
       active : false
     }},
 
@@ -160,6 +154,7 @@ export default {
 
 
 </script>
+
 <style>
 .drop {
     color: aliceblue;
@@ -177,6 +172,7 @@ export default {
  /*   background-color: black;*/
 }
 </style>
+
 
 
 

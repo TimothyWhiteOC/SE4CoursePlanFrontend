@@ -12,6 +12,10 @@ import login from '../views/loginPage.vue'
 import studentCourseEditEntry from '../views/studentCourseEditEntry.vue'
 import classForStudent from '../views/classForStudent.vue'
 
+import mainmenu from '../views/mainmenu.vue'
+import termSelect from '../views/termSelect.vue'
+
+
 const routes = [
   {
     path: '/courseAdd',
@@ -72,6 +76,19 @@ const routes = [
     props: true,
     component: coursePlan
   },
+
+  
+  {
+    path: '/',
+    name: 'mainmenu',
+    component: mainmenu
+  },
+  {
+    path: '/termSelect/:studentID',
+    name: 'termSelect',
+    props: true,
+    component: termSelect
+  } ,
   {
     path: '/students/:studentID/addCourse/:semTerm/:semYear/',
     name: 'classForStudent',

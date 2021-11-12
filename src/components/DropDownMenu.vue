@@ -68,7 +68,7 @@ export default {
         },
         {
           link: 'coursePlan',
-          params: {studentID: getStore('user').id || 0},
+          params: {studentID: getStore('user') && getStore('user').id ? getStore('user').id : 0},
           displayText: 'View Course plan',
           roles: ['student']
         }
@@ -76,7 +76,7 @@ export default {
     }
   },
   created() {
-    this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.user.role));
+    this.activeLinks = this.allLinksByRole.filter((link) => link.roles.includes(this.user.role) || link.roles.includes("none"));
   },
   methods: {
     toggle () {
