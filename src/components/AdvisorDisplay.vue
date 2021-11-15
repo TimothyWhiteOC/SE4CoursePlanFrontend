@@ -7,11 +7,11 @@
 
     <span>{{advisor.advisorID}} {{advisor.fName}} </span>
 
-   <router-link :to="{ name: 'editAdvisor' , params: { advisorID: advisor.advisorID }}">
+   <router-link v-if="permissions" :to="{ name: 'editAdvisor' , params: { advisorID: advisor.advisorID }}">
       <button>edit</button>
     </router-link> 
 
-    <button v-on:click="deleteAdvisor()"><span>delete</span></button>
+    <button v-if="permissions" v-on:click="deleteAdvisor()"><span>delete</span></button>
     <br>
     <br>
 
@@ -27,7 +27,8 @@ import AdvisorServices from "@/services/AdvisorServices.js";
 export default {
   name: 'ListEntry',
   props: {
-    advisor: Object
+    advisor: Object,
+    permissions: Boolean
   },
   methods: {
     deleteAdvisor(){
