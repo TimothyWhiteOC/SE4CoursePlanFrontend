@@ -5,6 +5,7 @@
       <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
       <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
       <button class = "buttonPrint button"  v-on:click= "addClass">Add Class</button>
+      <button v-if="permissions" class = "buttonPrint button"  v-on:click= "toStudents">Back</button>
 
       <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
       <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
@@ -161,6 +162,9 @@ export default {
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
     addClass() {
       this.$router.push({ name: 'termSelect', params: {studentID: this.studentID} });
+    },
+    toStudents() {
+      this.$router.push({ name: 'listStudents' });
     },
     makePDF() {
       const columns = [

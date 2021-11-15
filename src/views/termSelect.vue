@@ -1,5 +1,6 @@
 
 <template>
+  <div>
     <drop-down-menu pageName="Select a Term"/>
 
     <br><br>    <br><br>
@@ -9,15 +10,14 @@
 
     <div class="container">
     <button class = "drop" @click="toggle">{{this.semester.semTerm}}</button>
-    <div v-if="active">
-    <button class = "drop2" v-on:click="fallSelected()">Fall</button>
-    <br>
-    <button class = "drop2" v-on:click="springSelected()">Spring</button>
+      <div v-if="active">
+        <button class = "drop2" v-on:click="fallSelected()">Fall</button>
+        <br>
+        <button class = "drop2" v-on:click="springSelected()">Spring</button>
+      </div>
     </div>
-    </div>
-
-    <button  class = "submit" v-on:click="submit()">Submit</button>
-
+    <button class = "submit" v-on:click="submit()">Submit</button>
+  </div>
 </template>
 
 
@@ -50,7 +50,6 @@ import DropDownMenu from '../components/DropDownMenu.vue'
         this.semester.semTerm = "SP";
       },
       submit(){
-        console.log("debug: ");
         this.$router.push({ name: 'classForStudent' , params: {studentID: this.studentID,  semTerm: this.semester.semTerm, semYear: this.semester.semYear}})
       }
     }
