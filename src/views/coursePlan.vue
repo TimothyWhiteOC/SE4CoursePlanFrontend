@@ -10,7 +10,7 @@
       <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
       <br>
 
-      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
+      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" :permissions="permissions" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
 
 
     <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
@@ -24,6 +24,8 @@
 <script>
 // https://www.npmjs.com/package/jspdf
 import { jsPDF } from "jspdf";
+import { getStore } from "@/store/store"
+
 // https://www.npmjs.com/package/jspdf-autotable
 import 'jspdf-autotable';
 
@@ -49,7 +51,8 @@ export default {
       undivGPA: 0,
       majorGPA: 0,
       undivMajorGPA: 0,
-      student: {}
+      student: {},
+      permissions: false
     };
   },
   async created() {
@@ -57,6 +60,9 @@ export default {
     var semester = {};
     var majorCourses = {};
     var gpaWeight = {};
+
+    var role = getStore('user').role;
+    this.permissions = (role == "admin") || (role == "advisor");
 
     await StudentServices.getStudent(this.studentID)
       .then(response => {

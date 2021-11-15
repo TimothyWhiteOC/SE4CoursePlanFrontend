@@ -1,24 +1,21 @@
 <template>
 
-
   <div class="courseDisp">
     <br>
     {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
-        <button @click='editCourse(course.courseNo)'>Edit</button>
-        <button @click='deleteCourse(course.courseNo)'>Delete</button>
+        <button v-if="permissions" @click='editCourse(course.courseNo)'>Edit</button>
+        <button v-if="permissions" @click='deleteCourse(course.courseNo)'>Delete</button>
   </div>
     
-
-
-
 </template>
 
 <script>
 export default {
   name: 'StudentCourseDisplay',
   props: {
-    course: Object
+    course: Object,
+    permissons: Boolean
   },
   methods: {   
     deleteCourse(courseNum){
