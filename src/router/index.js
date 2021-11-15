@@ -75,9 +75,7 @@ const routes = [
     name: 'coursePlan',
     props: true,
     component: coursePlan
-  },
-
-  
+  }, 
   {
     path: '/',
     name: 'mainmenu',

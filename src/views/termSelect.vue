@@ -34,7 +34,6 @@ import DropDownMenu from '../components/DropDownMenu.vue'
             semYear: new Date().getFullYear(),
             semTerm: "FA"
         },
-
         // isEdit: false,
         active: false
     };

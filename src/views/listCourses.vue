@@ -6,9 +6,9 @@
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
       <br>
 
-    <!-- <button v-on:click= "cancel">Cancel</button>-->
+      <!-- <button v-on:click= "cancel">Cancel</button>-->
 
-      <course-display v-for="course in filteredCourses"  :key="course.courseNo" :course="course" /> 
+      <course-display v-for="course in filteredCourses"  :key="course.courseNo" :course="course" :permissions="permissions" /> 
 
     </div>
   </div>
@@ -18,15 +18,19 @@
 <script>
 
 import CourseServices from '@/services/CourseServices.js'
+import { getStore } from "@/store/store"
+
 import CourseDisplay from '../components/CourseDisplay.vue'
 import DropDownMenu from '../components/DropDownMenu.vue'
+
 export default {
   components: { CourseDisplay, DropDownMenu },
   data() {
     return {
       courses: [],
       search:'Accounting',
-      active:false
+      active: false,
+      permissions: false
     };
   },
   created() {
@@ -37,6 +41,8 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
+    var role = getStore('user');
+    this.permissions = (role == "admin") || (role == "advisor");
   },
   computed:{
     filteredCourses: function(){
