@@ -41,8 +41,10 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-    var role = getStore('user');
+    var role = getStore('user').role;
+    console.log(this.role);
     this.permissions = (role == "admin") || (role == "advisor");
+    console.log(this.permissions);
   },
   computed:{
     filteredCourses: function(){
