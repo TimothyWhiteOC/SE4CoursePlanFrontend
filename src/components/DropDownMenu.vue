@@ -36,6 +36,11 @@ export default {
       activeLinks: [],
       allLinksByRole: [
         {
+          link: 'login',
+          displayText: 'Home',
+          roles: ['admin', 'advisor', 'student', 'none']
+        },
+        {
           link: 'courseAdd',
           displayText: 'Add New Course',
           roles: ['admin', 'advisor']
