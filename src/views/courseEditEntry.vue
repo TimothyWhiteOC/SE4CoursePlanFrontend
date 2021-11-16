@@ -1,6 +1,6 @@
 <template>
+  <div class ="topMenu">Edit a Course</div>
   <div>
-    <drop-down-menu pageName="Course List"/>
     <div class = "form">
       <form @submit.prevent="sendForm">    
         <h2 v-if="this.isEdit">Edit {{this.course.name}}</h2>
@@ -50,11 +50,9 @@
 <script>
 import CourseServices from '@/services/CourseServices.js'
 
-import DropDownMenu from '../components/DropDownMenu.vue'
 
 export default {
   props: ['courseNo'],
-  components: { DropDownMenu },
   data() {
     return {
       message: null,

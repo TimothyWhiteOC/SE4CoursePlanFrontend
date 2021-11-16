@@ -1,13 +1,23 @@
 <template>
   <div >
+     
+    <drop-down-menu/>
     <router-view/>
   </div> 
   
 </template>
 
 <script>
+import DropDownMenu from '@/components/DropDownMenu.vue'
+
 export default {
   name: 'App',
+    components: {DropDownMenu},
+ data() {
+    return {
+      active: false
+    };
+  }
 }
 </script>
 
@@ -42,10 +52,17 @@ label{
 }
 
 .topMenu{
-  background-color: #004b91;
-  height: 85px;
+  background-color: #307ac0;
+  height: 100px;
   margin-left: 0px;
   margin-right: 0px;
+  margin-top: -119px;
+  color:#fffbeb;
+ /* font-family: "Courier New", monospace;*/
+  font-weight: lighter;  
+  font-size: 55px;
+  padding-top: 0px;
+
 }
 
 .title{

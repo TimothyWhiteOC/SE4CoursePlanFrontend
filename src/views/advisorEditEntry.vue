@@ -1,6 +1,6 @@
 <template>
+  <div class ="topMenu">Edit an Advisor</div>
   <div>
-    <drop-down-menu pageName="Course List"/>
     <div class = "form">
       <form @submit.prevent="sendForm">    
         <h2 v-if="this.isEdit">Edit {{this.advisor.fName}}</h2>
@@ -46,11 +46,8 @@
 <script>
 import AdvisorServices from '@/services/AdvisorServices.js'
 
-import DropDownMenu from '../components/DropDownMenu.vue'
-
 export default {
   props: ['advisorID'],
-  components: { DropDownMenu },
   data() {
     return {
       message: null,

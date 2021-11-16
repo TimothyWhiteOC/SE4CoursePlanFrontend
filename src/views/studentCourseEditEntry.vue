@@ -1,6 +1,7 @@
 <template>
+      <div class ="topMenu">Edit a Student Course</div>
+
    <div>
-    <drop-down-menu pageName="Edit Student Course"/>
 
 
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
@@ -58,7 +59,6 @@
 
 <script>
 import StudentCourseServices from "@/services/StudentCourseServices.js";
-import DropDownMenu from '../components/DropDownMenu.vue'
 
 export default {
 
@@ -67,7 +67,6 @@ export default {
     'courseNo',
     'studentID',
   ],
-  components: { DropDownMenu },
   data() {
     return {
       message: null,

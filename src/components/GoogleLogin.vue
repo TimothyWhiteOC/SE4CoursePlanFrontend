@@ -21,7 +21,8 @@ export default {
         setStore('token', {token: token.getAuthResponse().id_token});
         UserServices.getUser()
           .then(response => {
-            setStore('user', response.data.user);      
+            setStore('user', response.data.user);   
+                    this.$router.go(0);   
           })
           .catch(error => {
             console.log('There was an error:', error.response)
@@ -39,6 +40,7 @@ export default {
         removeItem('token');
         removeItem('user');
         this.$forceUpdate();
+        this.$router.go(0);
       } catch (error) {
         console.error(error);
       }

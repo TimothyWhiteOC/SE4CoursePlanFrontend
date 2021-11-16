@@ -1,6 +1,7 @@
 <template>
+      <div class ="topMenu">Advisor List</div>
+
   <div>
-    <drop-down-menu pageName="Advisor List"/>
     <!-- <button v-on:click= "cancel">Cancel</button>-->
     <input  class = "search" type = "text" v-model= "search" placeholder="Filter by advisor name &#x1F50E;&#xFE0E;	"/>
     <br>
@@ -12,11 +13,10 @@
 
 <script>
 import AdvisorDisplay from '../components/AdvisorDisplay.vue';
-import DropDownMenu from '../components/DropDownMenu.vue'
 
 import AdvisorServices from '@/services/AdvisorServices.js'
 export default {
-  components: { DropDownMenu, AdvisorDisplay },
+  components: {  AdvisorDisplay },
   data() {
     return {
       advisors: [],

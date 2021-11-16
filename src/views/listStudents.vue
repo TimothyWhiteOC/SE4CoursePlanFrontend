@@ -1,6 +1,7 @@
 <template>
+      <div class ="topMenu">Student List</div>
+
   <div>
-    <drop-down-menu pageName="Student List"/> 
     <div>
       <input class="search" v-model= "search" placeholder="Filter by student name &#x1F50E;&#xFE0E;	"/>
       <student-display v-for="student in filteredStudents" :key="student.studentID" :student="student" />
@@ -11,12 +12,11 @@
 
 <script>
 import StudentDisplay from '../components/StudentDisplay.vue';
-import DropDownMenu from '../components/DropDownMenu.vue'
 
 import StudentServices from '@/services/StudentServices.js'
 
 export default {
-  components: { DropDownMenu, StudentDisplay },
+  components: { StudentDisplay },
   data() {
     return {
       students: [],

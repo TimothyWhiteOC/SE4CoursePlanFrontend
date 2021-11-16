@@ -1,6 +1,6 @@
 <template>
+    <div class ="topMenu">Course List</div>
   <div>
-    <drop-down-menu pageName="Course List"/>
     <div>
       
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
@@ -19,9 +19,8 @@
 
 import CourseServices from '@/services/CourseServices.js'
 import CourseDisplay from '../components/CourseDisplay.vue'
-import DropDownMenu from '../components/DropDownMenu.vue'
 export default {
-  components: { CourseDisplay, DropDownMenu },
+  components: { CourseDisplay },
   data() {
     return {
       courses: [],
