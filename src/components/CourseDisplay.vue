@@ -7,11 +7,11 @@
 
     <span>{{course.courseNo}} {{course.name}} </span>
 
-   <router-link :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
+   <router-link v-if="permissions" :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
       <button>edit</button>
     </router-link> 
 
-    <button v-on:click="deleteCourse()"><span>delete</span></button>
+    <button v-if="permissions" v-on:click="deleteCourse()"><span>delete</span></button>
     <br>
     <br>
   </div>
@@ -26,7 +26,8 @@ import CourseServices from "@/services/CourseServices.js";
 export default {
   name: 'ListEntry',
   props: {
-    course: Object
+    course: Object,
+    permissions: Boolean
   },
   methods: {
     deleteCourse(){

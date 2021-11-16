@@ -34,14 +34,30 @@ export default {
       activeLinks: [],
       allLinksByRole: [
         {
-          link: 'courseAdd',
-          displayText: 'Add New Course',
-          roles: ['admin', 'advisor']
+          link: 'login',
+          displayText: 'Home',
+          roles: ['admin', 'advisor', 'student', 'none']
         },
         {
           link: 'listCourses',
           displayText: 'Search for Course',
           roles: ['admin', 'advisor', 'student', 'none']
+        },
+        {
+          link: 'courseAdd',
+          displayText: 'Add New Course',
+          roles: ['admin', 'advisor']
+        },
+        {
+          link: 'coursePlan',
+          params: {studentID: getStore('user') && getStore('user').id ? getStore('user').id : 0},
+          displayText: 'View Course plan',
+          roles: ['student']
+        },
+        {
+          link: 'listStudents',
+          displayText: 'Search for Students',
+          roles: ['admin', 'advisor']
         },
         {
           link: 'studentAdd',
@@ -53,22 +69,10 @@ export default {
           displayText: 'Search for Advisors',
           roles: ['admin', 'advisor']
         },
-
         {
           link: 'advisorAdd',
           displayText: 'Add New Advisor',
           roles: ['admin']
-        },
-        {
-          link: 'listStudents',
-          displayText: 'Search for Students',
-          roles: ['admin', 'advisor']
-        },
-        {
-          link: 'coursePlan',
-          params: {studentID: getStore('user') && getStore('user').id ? getStore('user').id : 0},
-          displayText: 'View Course plan',
-          roles: ['student']
         }
       ]
     }

@@ -5,7 +5,7 @@
     <!-- <button v-on:click= "cancel">Cancel</button>-->
     <input  class = "search" type = "text" v-model= "search" placeholder="Filter by advisor name &#x1F50E;&#xFE0E;	"/>
     <br>
-    <advisor-display class = "listDisp"  v-for="advisor in filteredAdvisors" :key="advisor.advisorID" :advisor="advisor"/> 
+    <advisor-display class = "listDisp"  v-for="advisor in filteredAdvisors" :key="advisor.advisorID" :advisor="advisor" :permissions="permissions"/> 
 
   </div>
 </template>
@@ -14,6 +14,8 @@
 <script>
 import AdvisorDisplay from '../components/AdvisorDisplay.vue';
 
+import { getStore } from "@/store/store"
+
 import AdvisorServices from '@/services/AdvisorServices.js'
 export default {
   components: {  AdvisorDisplay },
@@ -21,11 +23,14 @@ export default {
     return {
       advisors: [],
       search:'',
-      active : false
-
+      active: false,
+      permissions: false
     };
   },
   created() {
+    var role = getStore('user').role;
+    this.permissions = (role == "admin");
+
     AdvisorServices.getAdvisors()
       .then(response => {
         this.advisors = response.data

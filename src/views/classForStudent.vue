@@ -4,6 +4,8 @@
     <div>
      
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
+      <router-link :to="{ name: 'coursePlan', params: { studentID: studentID }}">          <button>Cancel</button>
+      </router-link>
       <br>
 
       <!-- <button v-on:click= "cancel">Cancel</button>-->
