@@ -40,7 +40,7 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-    var role =  getStore('user') && getStore('user').role ? getStore('user').role : "none" ;
+    var role =  getStore('user') && getStore('user').role ? getStore('user').role : "none";
     this.permissions = (role == "admin") || (role == "advisor");
   },
   computed:{

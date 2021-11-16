@@ -71,14 +71,14 @@ export default {
         advisorID:""
       },
       isEdit: false,
-      studentNo: "",
+      //studentNo: "",
       active : false
     };
   },
   created() {
     if (this.studentID != null){
       this.isEdit = true;
-      this.studentNo = this.studentID;
+      //this.studentNo = this.studentID;
       StudentServices.getStudent(this.studentID)
         .then(response => {
           this.student = response.data[0];
@@ -96,7 +96,7 @@ export default {
       else this.updateStudent();
     },
     addStudent() {
-      this.student.studentID = this.studentNo;
+      //this.student.studentID = this.studentNo;
       StudentServices.addStudent(this.student)
         .then(() => {
           this.$router.push({ name: 'listStudents' })

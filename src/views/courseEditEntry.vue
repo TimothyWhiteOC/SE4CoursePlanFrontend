@@ -1,6 +1,6 @@
 <template>
-  <div class ="topMenu">Edit a Course</div>
   <div>
+    <div class ="topMenu">Edit a Course</div>
     <div class = "form">
       <form @submit.prevent="sendForm">    
         <h2 v-if="this.isEdit">Edit {{this.course.name}}</h2>

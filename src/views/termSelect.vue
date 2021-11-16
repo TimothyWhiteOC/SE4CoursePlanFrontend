@@ -38,7 +38,6 @@
         active: false
     };
   },
- 
     methods: {
       toggle () {
         this.active = !this.active
