@@ -1,5 +1,4 @@
 <template>
-  <div class="topMenu">
     <div class="dropdown">
       <button class="dropbtn" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu" @click="toggle">
         <svg width="100" height="100" >
@@ -17,7 +16,6 @@
       </div>
     </div>
     <h2 class = "title">{{this.pageName}}</h2>
-  </div>
 </template>
 
 <script>

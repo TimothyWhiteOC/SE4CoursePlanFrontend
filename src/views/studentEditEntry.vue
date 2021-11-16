@@ -1,8 +1,8 @@
 <template>
+      <div class ="topMenu">Edit a Student</div>
+
   <div>
-    <drop-down-menu pageName="Edit Student"/>
     <div class = "form">
-      <h2 class = "title">Student</h2>
       <form @submit.prevent="sendForm">
         <h2 v-if="this.isEdit">Edit {{this.student.fName}}</h2>
         <p v-if="message">{{this.message}}</p>
@@ -46,12 +46,10 @@
 <script>
 import StudentServices from '@/services/StudentServices.js'
 
-import DropDownMenu from '../components/DropDownMenu.vue'
 
 export default {
 
   props: ['studentID'],
-  components: { DropDownMenu },
 
   /*
     props: [
