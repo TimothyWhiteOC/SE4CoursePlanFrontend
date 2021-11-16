@@ -9,13 +9,7 @@
 
       <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
       <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
-      <br>
-
       <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
-
-
-    <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
-
     </div>
   </div>
 </template>

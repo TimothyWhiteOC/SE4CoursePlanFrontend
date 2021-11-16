@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="courseDisp">
+  <div class="courseDisp2">
     <br>
     {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
@@ -87,6 +87,10 @@ button {
   width: 70px;
   cursor: pointer;
   margin-left: 10px;
+  border-style: solid;
+  border-radius: 2px;
+  border-width: 3px;
+  border-color: #85c2ff00;
 }
 
 
