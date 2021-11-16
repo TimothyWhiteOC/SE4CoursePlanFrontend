@@ -41,7 +41,7 @@
 
 
         <button type="submit">Submit</button>
-        <button v-on:click= "cancel">Cancel</button>
+        <button v-if="isEdit" v-on:click= "cancel">Cancel</button>
       </form>
     </div>
   </div>
@@ -65,14 +65,14 @@ export default {
         description: ""
       },
       isEdit: false,
-      courseID: "",
+      //courseID: "",
       active : false
     };
   },
   created() {
     if (this.courseNo != null){
       this.isEdit = true;
-      this.courseID = this.courseNo;
+      //this.courseID = this.courseNo;
       CourseServices.getCourse(this.courseNo)
         .then(response => {
           this.course = response.data[0];
@@ -90,7 +90,7 @@ export default {
       else this.updateCourse();
     },
     addCourse() {
-      this.course.courseNo = this.courseID;
+      //this.course.courseNo = this.courseID;
       CourseServices.addCourse(this.course)
         .then(() => {
           this.$router.push({ name: 'listCourses' })
