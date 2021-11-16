@@ -1,15 +1,29 @@
 <template>
-  <div class ="topMenu">Edit an Advisor</div>
   <div>
+    <div v-if="isEdit" class ="topMenu">Edit Advisor</div>
+    <div v-else class ="topMenu">Add Advisor</div>
     <div class = "form">
       <form @submit.prevent="sendForm">    
-        <h2 v-if="this.isEdit">Edit {{this.advisor.fName}}</h2>
+        <h2 v-if="this.isEdit">Edit {{this.advisor.fName}} {{this.advisor.lName}}</h2>
         <p v-if="message">{{this.message}}</p>
 
+        <!--fix this?
         <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>
 
         <textarea v-if="isEdit" readonly id = "advisorNo" v-model="advisorNo"></textarea>
-        <br>      <br>
+        <br>      <br>-->
+
+        <div v-if="isEdit">
+          <label for = "advisorID">Advisor ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <label >{{advisorID}}</label>
+          <br>      <br>
+        </div>
+
+        <!-- <div v-else>
+          <label for = "advisorID">Advisor ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+         <input type = "text" v-model= "advisor.advisorID" placeholder=""/>
+          <br>      <br>
+        </div>-->
 
         <label for = "fName">First Name: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "advisor.fName" placeholder=""/>
@@ -31,10 +45,7 @@
         <br>
 
         <button type="submit">Submit</button>
-        <button v-on:click= "cancel">Cancel</button>
-
-        <input type="button" value="Back Button" onclick="history.go(-1)">
-
+        <button v-if="isEdit" v-on:click= "cancel">Cancel</button>
       </form>
     </div>
   </div>
@@ -59,14 +70,14 @@ export default {
         email: ""
       },
       isEdit: false,
-      advisorNo: "",
+      // advisorNo: "",
       active: false
     };
   },
   created() {
     if (this.advisorID != null){
       this.isEdit = true;
-      this.advisorNo = this.advisorID;
+      //this.advisorNo = this.advisorID;
       AdvisorServices.getAdvisor(this.advisorID)
         .then(response => {
           this.advisor = response.data[0];
@@ -80,11 +91,12 @@ export default {
      toggle () {
       this.active = !this.active},
     sendForm (){
+      console.log(this.advisor);
       if(!this.isEdit) this.addAdvisor();
       else this.updateAdvisor();
     },
     addAdvisor() {
-      this.advisor.advisorID = this.advisorNo;
+      //this.advisor.advisorID = this.advisorNo;
       AdvisorServices.addAdvisor(this.advisor)
         .then(() => {
           this.$router.push({ name: 'listAdvisors' })

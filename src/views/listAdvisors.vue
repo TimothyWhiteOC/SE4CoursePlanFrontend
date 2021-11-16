@@ -1,7 +1,6 @@
 <template>
-      <div class ="topMenu">Advisor List</div>
-
   <div>
+    <div class ="topMenu">Advisor List</div>
     <!-- <button v-on:click= "cancel">Cancel</button>-->
     <input  class = "search" type = "text" v-model= "search" placeholder="Filter by advisor name &#x1F50E;&#xFE0E;	"/>
     <br>
@@ -28,7 +27,7 @@ export default {
     };
   },
   created() {
-    var role = getStore('user').role;
+    var role = getStore('user') && getStore('user').role ? getStore('user').role : "none";
     this.permissions = (role == "admin");
 
     AdvisorServices.getAdvisors()

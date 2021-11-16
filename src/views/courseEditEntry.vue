@@ -1,20 +1,21 @@
 <template>
-  <div class ="topMenu">Edit a Course</div>
   <div>
+    <div v-if="isEdit" class ="topMenu">Edit Course</div>
+    <div v-else class ="topMenu">Add a Course</div>
     <div class = "form">
-      <form @submit.prevent="sendForm">    
+      <form @submit.prevent="sendForm">
         <h2 v-if="this.isEdit">Edit {{this.course.name}}</h2>
-        <!--<h2 v-else>Add New Course</h2>-->
         <p v-if="message">{{this.message}}</p>
-        
+
+        <label for = "courseID">Course Number: &nbsp;&emsp;</label>
+        <input type = "text" v-model= "course.courseNo" placeholder="CMSC-0020, ACCT-0010"/>
+        <br><br>
+
+
         <label for = "dept">Department: &nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "course.dept" placeholder="CMSC, ACCT"/>
         <br>
         <br>
-
-        <label for = "courseID">Course Number: &nbsp;&emsp;</label>
-        <input type = "text" v-model= "courseID" placeholder="CMSC-0020, ACCT-0010"/>
-        <br>      <br>
 
 
         <label for = "name">Course Name: &emsp; &emsp;</label>
@@ -41,7 +42,7 @@
 
 
         <button type="submit">Submit</button>
-        <button v-on:click= "cancel">Cancel</button>
+        <button v-if="isEdit" v-on:click= "cancel">Cancel</button>
       </form>
     </div>
   </div>
@@ -65,14 +66,14 @@ export default {
         description: ""
       },
       isEdit: false,
-      courseID: "",
+      //courseID: "",
       active : false
     };
   },
   created() {
     if (this.courseNo != null){
       this.isEdit = true;
-      this.courseID = this.courseNo;
+      //this.courseID = this.courseNo;
       CourseServices.getCourse(this.courseNo)
         .then(response => {
           this.course = response.data[0];
@@ -90,7 +91,7 @@ export default {
       else this.updateCourse();
     },
     addCourse() {
-      this.course.courseNo = this.courseID;
+      //this.course.courseNo = this.courseID;
       CourseServices.addCourse(this.course)
         .then(() => {
           this.$router.push({ name: 'listCourses' })
@@ -111,7 +112,7 @@ export default {
         })
     },
     cancel() {
-      this.$router.push({ name: 'adminmenu' });
+      this.$router.push({ name: 'listCourses' });
     }
   }
 }

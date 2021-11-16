@@ -3,7 +3,7 @@
 
   <div class = "listDisp">
  
-    <span>{{student.studentID}} {{student.fName}} </span>
+    <span>{{student.studentID}} {{student.fName}}  {{student.lName}} </span>
 
     <router-link :to="{ name: 'coursePlan', params: { studentID: student.studentID }}">          <button>Course Plan</button>
     </router-link>

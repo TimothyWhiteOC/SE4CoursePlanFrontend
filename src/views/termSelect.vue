@@ -1,8 +1,8 @@
 
 <template>
+  <div>
     <div class ="topMenu">Select Term</div>
-
-
+  
     <br><br>    <br><br>
     <label for = "semYear">Semester Year: &emsp;&emsp;</label>
     <input type = "text" v-model= "semester.semYear" placeholder=""/>
@@ -38,7 +38,6 @@
         active: false
     };
   },
- 
     methods: {
       toggle () {
         this.active = !this.active

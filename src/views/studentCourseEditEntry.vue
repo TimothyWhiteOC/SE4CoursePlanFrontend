@@ -1,7 +1,8 @@
 <template>
+   <div>
       <div class ="topMenu">Edit a Student Course</div>
 
-   <div>
+
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
 
       <!--<textarea v-if="isEdit" readonly id = "advisorNo" v-model="advisorNo"></textarea>-->

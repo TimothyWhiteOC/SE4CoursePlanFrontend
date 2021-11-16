@@ -1,17 +1,25 @@
 <template>
-      <div class ="topMenu">Edit a Student</div>
-
   <div>
+    <div v-if="isEdit" class ="topMenu">Edit Student</div>
+    <div v-else class ="topMenu">Add Student</div>
     <div class = "form">
       <form @submit.prevent="sendForm">
-        <h2 v-if="this.isEdit">Edit {{this.student.fName}}</h2>
+        <h2 v-if="this.isEdit">Edit {{this.student.fName}} {{this.student.lName}}</h2>
         <p v-if="message">{{this.message}}</p>
 
-        <label for = "studentNo">Student Number:&emsp;</label>
+        
+        <div v-if="isEdit">
+          <label for = "studentID">Student ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <label >{{studentID}}</label>
+          <br>      <br>
+        </div>
 
-        <input type = "text" v-model= "studentNo" placeholder="XXXXXXX"/>
-
-        <br>      <br>
+        
+        <div v-else>
+          <label for = "studentID">Student ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <input type = "text" v-model= "student.studentID" placeholder=""/>
+          <br>      <br>
+        </div>
 
         <label for = "fName">First Name: &emsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "student.fName" placeholder=""/>
@@ -37,7 +45,7 @@
 
 
         <button type="submit">Submit</button>
-        <button v-on:click= "cancel">Cancel</button>
+        <button v-if="isEdit" v-on:click= "cancel">Cancel</button>
       </form>
     </div>
   </div>
@@ -48,7 +56,6 @@ import StudentServices from '@/services/StudentServices.js'
 
 
 export default {
-
   props: ['studentID'],
 
   /*
@@ -72,14 +79,14 @@ export default {
         advisorID:""
       },
       isEdit: false,
-      studentNo: "",
+      //studentNo: "",
       active : false
     };
   },
   created() {
     if (this.studentID != null){
       this.isEdit = true;
-      this.studentNo = this.studentID;
+      //this.studentNo = this.studentID;
       StudentServices.getStudent(this.studentID)
         .then(response => {
           this.student = response.data[0];
@@ -97,7 +104,7 @@ export default {
       else this.updateStudent();
     },
     addStudent() {
-      this.student.studentID = this.studentNo;
+      //this.student.studentID = this.studentNo;
       StudentServices.addStudent(this.student)
         .then(() => {
           this.$router.push({ name: 'listStudents' })
@@ -118,7 +125,7 @@ export default {
         })
     },
     cancel() {
-      this.$router.push({ name: 'adminmenu' });
+      this.$router.push({ name: 'listStudents' });
     }
   }
 }

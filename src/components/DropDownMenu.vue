@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <h2 class = "title">{{this.pageName}}</h2>
+    <!--<h2 class = "title">{{this.pageName}}</h2>-->
 </template>
 
 <script>

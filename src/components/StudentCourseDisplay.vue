@@ -17,7 +17,7 @@ export default {
   name: 'StudentCourseDisplay',
   props: {
     course: Object,
-    permissons: Boolean
+    permissions: Boolean
   },
   methods: {   
     deleteCourse(courseNum){
