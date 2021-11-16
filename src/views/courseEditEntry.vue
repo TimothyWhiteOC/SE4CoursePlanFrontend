@@ -1,21 +1,21 @@
 <template>
   <div>
-    <div v-if="isEdit" class ="topMenu">Edit a Course</div>
+    <div v-if="isEdit" class ="topMenu">Edit Course</div>
     <div v-else class ="topMenu">Add a Course</div>
     <div class = "form">
-      <form @submit.prevent="sendForm">    
+      <form @submit.prevent="sendForm">
         <h2 v-if="this.isEdit">Edit {{this.course.name}}</h2>
-        <!--<h2 v-else>Add New Course</h2>-->
         <p v-if="message">{{this.message}}</p>
-        
+
+        <label for = "courseID">Course Number: &nbsp;&emsp;</label>
+        <input type = "text" v-model= "course.courseNo" placeholder="CMSC-0020, ACCT-0010"/>
+        <br><br>
+
+
         <label for = "dept">Department: &nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "course.dept" placeholder="CMSC, ACCT"/>
         <br>
         <br>
-
-        <label for = "courseID">Course Number: &nbsp;&emsp;</label>
-        <input type = "text" v-model= "courseID" placeholder="CMSC-0020, ACCT-0010"/>
-        <br>      <br>
 
 
         <label for = "name">Course Name: &emsp; &emsp;</label>
