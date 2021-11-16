@@ -36,7 +36,7 @@
 
 
         <button type="submit">Submit</button>
-        <button v-on:click= "cancel">Cancel</button>
+        <button v-if="isEdit" v-on:click= "cancel">Cancel</button>
       </form>
     </div>
   </div>
@@ -47,7 +47,6 @@ import StudentServices from '@/services/StudentServices.js'
 
 
 export default {
-
   props: ['studentID'],
 
   /*
