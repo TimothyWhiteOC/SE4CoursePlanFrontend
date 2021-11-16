@@ -57,8 +57,7 @@ export default {
 
     var role =  getStore('user') && getStore('user').role ? getStore('user').role : "none" ;
     this.permissions = (role == "admin") || (role == "advisor");
-    console.log("permissions: " + this.permissions);
-
+    
     await StudentServices.getStudent(this.studentID)
       .then(response => {
         this.student = response.data[0]

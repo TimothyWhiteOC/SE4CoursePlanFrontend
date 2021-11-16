@@ -35,9 +35,6 @@ export default {
     semester: Object,
     permissions: Boolean
   },
-  created() {
-    console.log("semester: " + this.permissions)
-  },
   methods: {
     courseDeleted(courseNum){
       this.$emit('courseDeleted', courseNum)

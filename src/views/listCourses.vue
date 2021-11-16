@@ -1,6 +1,6 @@
 <template>
-    <div class ="topMenu">Course List</div>
   <div>
+    <div class ="topMenu">Course List</div>
     <div>
       
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
@@ -40,7 +40,7 @@ export default {
       .catch(error => {
         console.log('There was an error:', error.response)
       })
-    var role = getStore('user').role;
+    var role =  getStore('user') && getStore('user').role ? getStore('user').role : "none" ;
     this.permissions = (role == "admin") || (role == "advisor");
   },
   computed:{
