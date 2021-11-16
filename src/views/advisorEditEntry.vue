@@ -19,6 +19,12 @@
           <br>      <br>
         </div>
 
+        <div v-else>
+          <label for = "advisorID">Advisor ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <input type = "text" v-model= "advisor.advisorID" placeholder=""/>
+          <br>      <br>
+        </div>
+
         <label for = "fName">First Name: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "advisor.fName" placeholder=""/>
         <br>      <br>

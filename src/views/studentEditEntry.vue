@@ -14,6 +14,13 @@
           <br>      <br>
         </div>
 
+        
+        <div v-else>
+          <label for = "studentID">Student ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <input type = "text" v-model= "student.studentID" placeholder=""/>
+          <br>      <br>
+        </div>
+
         <label for = "fName">First Name: &emsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "student.fName" placeholder=""/>
 
