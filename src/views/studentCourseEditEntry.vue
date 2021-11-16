@@ -2,8 +2,6 @@
       <div class ="topMenu">Edit a Student Course</div>
 
    <div>
-
-
       <!-- <label for = "advisorNo">Advisor Number: &nbsp;&emsp;</label>-->
 
       <!--<textarea v-if="isEdit" readonly id = "advisorNo" v-model="advisorNo"></textarea>-->
@@ -27,9 +25,9 @@
       <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
       <label type = "text" placeholder="">{{this.sCourse.semYear}}</label>
       <br>      <br>
-      <input type = "text" v-model= "sCourse.grade" placeholder=""/>-->
-      <div class="container">
-              <label for = "semYear">Semester Year: &emsp;&emsp;&emsp; </label>
+     
+         <div class="container">
+        <label for = "grade" >Grade: &emsp;&emsp;&emsp;</label>
         <button class = "drop" @click="toggle">{{this.sCourse.grade}}</button>
         <div v-if="active">
           <button class = "drop2" v-on:click="aSelected()">A</button>
@@ -158,17 +156,18 @@ export default {
 .drop {
     color: aliceblue;
     background-color: rgb(82, 148, 185);
+
 }
 .drop2 {
     color: aliceblue;
     background-color: rgb(151, 186, 206);
-    margin-right: -166px;
+    margin-right: -184px;
 }
 
 .container{
     height: 190px;
     margin: auto;
- /*   background-color: black;*/
+    background-color: rgba(0, 0, 0, 0);
 }
 </style>
 

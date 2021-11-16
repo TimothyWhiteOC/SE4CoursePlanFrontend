@@ -4,15 +4,19 @@
   <div class="courseDisp">
     
    <!-- -->
+    <div class = "text">
     <br>
     <span> Semester     {{semester.semTerm}}      {{semester.semYear}} </span>
     <span>    Hours: {{semester.semHours}}   GPA: {{semester.GPA}} </span>
     <span>    Major Hours: {{semester.semMajorHours}}     Major GPA: {{semester.majorGPA}} </span>
+    </div>
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
     <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  :permissions="permissions" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
     <br>
-    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear }}">
+
+
+    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
      <p class = "color"> Add a course </p>
     </router-link> </button>
 
@@ -75,6 +79,10 @@ a {
 .color{
   color: white;
 }
+.text{
+  font-size: 38px;
+  color: white;
+}
 .courseDisp {
  /* padding: 10px; */
   margin-top: 20px;
@@ -85,17 +93,40 @@ a {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   font-weight: normal;
-  
   background-color: rgba(143, 11, 11, 0.856);
+  border-style: solid;
+  border-radius: 20px;
+  border-width: 5px;
+  border-color: rgb(255, 255, 255);
 }
 
+.courseDisp2 {
+ /* padding: 10px; */
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: normal;
+  background-color: rgba(143, 11, 11, 0.856);
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(235, 218, 218);
+}
 button {
   text-decoration: none; /* no underline */
   border: none;
   padding: 0!important;
   font-size: 20px;
-  height: 75px;
-  width: 100px;
+  height: 85px;
+  width: 120px;
+  
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #006fdd00;
 }
 
 

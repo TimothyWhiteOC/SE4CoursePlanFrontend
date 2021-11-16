@@ -188,6 +188,8 @@ button {
 button:hover {
   background-color: #e0a606; /* Green */
   color: white;
+  border-color: rgba(255, 255, 255);
+
 }
 
 .buttonPrint {
@@ -197,12 +199,18 @@ button:hover {
   /*optional*/
   font-family: arial;
   font-size: 17px;
-  color: #ffffff;
-  background-color: #4385ff98;
+  color: #708bff;
+  background-color: #ffff;
   height: 60px;
-  width: 80px;
+  width: 90px;
   cursor: pointer;
   margin-left: 10px;
+  
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 3px;
+  border-color: #85c2ff98;
+
 }
 
 
