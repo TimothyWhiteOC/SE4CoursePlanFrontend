@@ -1,7 +1,6 @@
 <template>
-  <div class ="topMenu">Course Plan</div>
-
   <div>
+    <div class ="topMenu">Course Plan</div>
     <div>
       <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
       <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
@@ -56,8 +55,9 @@ export default {
     var majorCourses = {};
     var gpaWeight = {};
 
-    var role = getStore('user').role;
+    var role =  getStore('user') && getStore('user').role ? getStore('user').role : "none" ;
     this.permissions = (role == "admin") || (role == "advisor");
+    console.log("permissions: " + this.permissions);
 
     await StudentServices.getStudent(this.studentID)
       .then(response => {

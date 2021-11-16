@@ -1,7 +1,6 @@
-<template>
-      <div class ="topMenu">Student List</div>
-
+<template> 
   <div>
+    <div class ="topMenu">Student List</div>
     <div>
       <input class="search" v-model= "search" placeholder="Filter by student name &#x1F50E;&#xFE0E;	"/>
       <student-display v-for="student in filteredStudents" :key="student.studentID" :student="student" />

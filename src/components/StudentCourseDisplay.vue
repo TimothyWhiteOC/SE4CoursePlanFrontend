@@ -19,6 +19,9 @@ export default {
     course: Object,
     permissons: Boolean
   },
+  created() {
+    console.log("course: " + this.permissons);
+  },
   methods: {   
     deleteCourse(courseNum){
       this.$emit('courseDeleted', courseNum)
