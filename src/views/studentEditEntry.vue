@@ -1,16 +1,18 @@
 <template>
   <div>
-    <div class ="topMenu">Edit a Student</div>
+    <div v-if="isEdit" class ="topMenu">Edit Student</div>
+    <div v-else class ="topMenu">Add Student</div>
     <div class = "form">
       <form @submit.prevent="sendForm">
         <h2 v-if="this.isEdit">Edit {{this.student.fName}}</h2>
         <p v-if="message">{{this.message}}</p>
 
-        <label for = "studentNo">Student Number:&emsp;</label>
-
-        <input type = "text" v-model= "studentNo" placeholder="XXXXXXX"/>
-
-        <br>      <br>
+        
+        <div v-if="isEdit">
+          <label for = "studentID">Student ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <label >{{studentID}}</label>
+          <br>      <br>
+        </div>
 
         <label for = "fName">First Name: &emsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "student.fName" placeholder=""/>

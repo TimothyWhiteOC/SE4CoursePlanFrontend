@@ -14,7 +14,7 @@
         <br>      <br>-->
 
         <div v-if="isEdit">
-          <label for = "advisorID">First Name: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
+          <label for = "advisorID">Advisor ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
           <label >{{advisorID}}</label>
           <br>      <br>
         </div>

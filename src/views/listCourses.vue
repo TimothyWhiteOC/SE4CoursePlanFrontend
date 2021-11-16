@@ -53,9 +53,6 @@ export default {
   methods: {
     toggle () {
       this.active = !this.active},
-    cancel() {
-      this.$router.push({ name: 'adminmenu' });
-    }
   }
 }
 </script>

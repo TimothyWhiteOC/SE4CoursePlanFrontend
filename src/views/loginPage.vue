@@ -1,6 +1,9 @@
 <template>
-  <div class="main-container">
-    <GoogleLogin />
+  <div>
+    <div class ="topMenu">Home Page</div>
+    <div class="main-container">
+      <GoogleLogin />
+    </div>
   </div>
 </template>
 
