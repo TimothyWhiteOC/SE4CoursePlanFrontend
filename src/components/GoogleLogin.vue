@@ -28,6 +28,8 @@ export default {
             console.log('There was an error:', error.response)
           })
         this.$forceUpdate();
+        // use different method to force a reload of the page
+        
       } catch (error) {
         //on fail do something
         console.error(error);

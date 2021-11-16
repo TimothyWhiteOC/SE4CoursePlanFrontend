@@ -105,8 +105,7 @@ export default {
         })
     },
     cancel() {
-      
-      this.$router.push({ name: 'adminmenu' });
+      this.$router.push({ name: 'listAdvisors' });
     }
   }
 }

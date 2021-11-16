@@ -10,9 +10,9 @@
     <span>    Major Hours: {{semester.semMajorHours}}     Major GPA: {{semester.majorGPA}} </span>
     <!--<button v-on:click="deleteCourse()"><span>delete</span></button>-->
     <br>
-    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  @courseDeleted="courseDeleted" @editCourse="editCourse"/>
+    <student-course-display v-for="course in semester.courses" :key="course.courseNo" :course="course"  :permissions="permissions" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
     <br>
-    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear}}">
+    <button> <router-link :to="{ name: 'classForStudent', params:{semTerm : semester.semTerm, semYear : semester.semYear }}">
      <p class = "color"> Add a course </p>
     </router-link> </button>
 
@@ -28,7 +28,8 @@ export default {
   name: 'CorPlanSemesterDisplay',
   components: { StudentCourseDisplay },
   props: {
-    semester: Object
+    semester: Object,
+    permissions: Boolean
   },
   methods: {
     courseDeleted(courseNum){

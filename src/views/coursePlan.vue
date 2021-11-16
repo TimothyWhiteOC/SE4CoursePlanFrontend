@@ -6,12 +6,13 @@
       <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
       <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
       <button class = "buttonPrint button"  v-on:click= "addClass">Add Class</button>
+      <button v-if="permissions" class = "buttonPrint button"  v-on:click= "toStudents">Back</button>
 
       <h3>Hours Completed: {{totalHours}}   GPA: {{GPA}}</h3>
       <h3>Major Credit Earned: {{totalMajorHours}}    Major GPA: {{majorGPA}}</h3>
       <br>
 
-      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
+      <cor-plan-semester-display v-for="semester in semesters" :key="semester.semTerm" :semester="semester" :permissions="permissions" @courseDeleted="courseDeleted" @editCourse="editCourse"/>
 
 
     <!--<degree-audit-course v-for="course in auditCourses" :key="course.majorCourse.courseNo" :auditCourse="course"/> -->
@@ -25,6 +26,8 @@
 <script>
 // https://www.npmjs.com/package/jspdf
 import { jsPDF } from "jspdf";
+import { getStore } from "@/store/store"
+
 // https://www.npmjs.com/package/jspdf-autotable
 import 'jspdf-autotable';
 
@@ -49,7 +52,8 @@ export default {
       undivGPA: 0,
       majorGPA: 0,
       undivMajorGPA: 0,
-      student: {}
+      student: {},
+      permissions: false
     };
   },
   async created() {
@@ -57,6 +61,9 @@ export default {
     var semester = {};
     var majorCourses = {};
     var gpaWeight = {};
+
+    var role = getStore('user').role;
+    this.permissions = (role == "admin") || (role == "advisor");
 
     await StudentServices.getStudent(this.studentID)
       .then(response => {
@@ -144,7 +151,6 @@ export default {
       
     },
     editCourse(currentCourse){
-      console.log("Edit: " + currentCourse);
       this.$router.push({ name: 'studentCourseEditEntry', params: {studentID: this.studentID, courseNo: currentCourse} });
     },
     // may need to install jspdf, autotable
@@ -154,7 +160,10 @@ export default {
     // i used the tutorial code here because its code works
     // https://codingshiksha.com/vue/vue-js-pdf-generator-in-vuetify-ui-using-jspdf-and-jspdf-autotable-library-full-tutorial-for-beginners/
     addClass() {
-      this.$router.push({ name: 'classForStudent', params: {studentID: this.studentID} });
+      this.$router.push({ name: 'termSelect', params: {studentID: this.studentID} });
+    },
+    toStudents() {
+      this.$router.push({ name: 'listStudents' });
     },
     makePDF() {
       const columns = [
