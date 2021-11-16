@@ -4,7 +4,7 @@
     <div v-else class ="topMenu">Add Student</div>
     <div class = "form">
       <form @submit.prevent="sendForm">
-        <h2 v-if="this.isEdit">Edit {{this.student.fName}}</h2>
+        <h2 v-if="this.isEdit">Edit {{this.student.fName}} {{this.student.lName}}</h2>
         <p v-if="message">{{this.message}}</p>
 
         

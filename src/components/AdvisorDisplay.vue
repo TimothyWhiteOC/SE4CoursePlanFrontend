@@ -5,7 +5,7 @@
     
    <!-- -->
 
-    <span>{{advisor.advisorID}} {{advisor.fName}} </span>
+    <span>{{advisor.advisorID}} {{advisor.fName}} {{advisor.lName}} </span>
 
    <router-link v-if="permissions" :to="{ name: 'editAdvisor' , params: { advisorID: advisor.advisorID }}">
       <button>edit</button>

@@ -56,7 +56,8 @@ label{
   height: 100px;
   margin-left: 0px;
   margin-right: 0px;
-  margin-top: -119px;
+  margin-top: -104px;
+  margin-bottom: 20px;
   color:#fffbeb;
  /* font-family: "Courier New", monospace;*/
   font-weight: lighter;  

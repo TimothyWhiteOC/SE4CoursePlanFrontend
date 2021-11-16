@@ -4,7 +4,7 @@
     <div v-else class ="topMenu">Add Advisor</div>
     <div class = "form">
       <form @submit.prevent="sendForm">    
-        <h2 v-if="this.isEdit">Edit {{this.advisor.fName}}</h2>
+        <h2 v-if="this.isEdit">Edit {{this.advisor.fName}} {{this.advisor.lName}}</h2>
         <p v-if="message">{{this.message}}</p>
 
         <!--fix this?
@@ -19,11 +19,11 @@
           <br>      <br>
         </div>
 
-        <div v-else>
+        <!-- <div v-else>
           <label for = "advisorID">Advisor ID: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
-          <input type = "text" v-model= "advisor.advisorID" placeholder=""/>
+         <input type = "text" v-model= "advisor.advisorID" placeholder=""/>
           <br>      <br>
-        </div>
+        </div>-->
 
         <label for = "fName">First Name: &nbsp;&nbsp;&emsp;&emsp;&emsp;</label>
         <input type = "text" v-model= "advisor.fName" placeholder=""/>
