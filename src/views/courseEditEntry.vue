@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class ="topMenu">Edit a Course</div>
+    <div v-if="isEdit" class ="topMenu">Edit a Course</div>
+    <div v-else class ="topMenu">Add a Course</div>
     <div class = "form">
       <form @submit.prevent="sendForm">    
         <h2 v-if="this.isEdit">Edit {{this.course.name}}</h2>
@@ -111,7 +112,7 @@ export default {
         })
     },
     cancel() {
-      this.$router.push({ name: 'adminmenu' });
+      this.$router.push({ name: 'listCourses' });
     }
   }
 }
