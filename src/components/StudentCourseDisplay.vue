@@ -7,7 +7,7 @@
     {{course.name}}    Course No. {{course.courseNo}}   {{course.hours}} Hours     Grade: {{course.grade}}
     <br>
         <button v-if="permissions" @click='editCourse(course.courseNo)'>Edit</button>
-        <button v-if="permissions" @click='deleteCourse(course.courseNo)'>Delete</button>
+        <button class = "back button" v-if="permissions" @click='deleteCourse(course.courseNo)'>Delete</button>
   </div>
     
 </template>

@@ -53,7 +53,7 @@ label{
 
 .topMenu{
   background-color: #307ac0;
-  height: 100px;
+  height: 90px;
   margin-left: 0px;
   margin-right: 0px;
   margin-top: -104px;
@@ -62,7 +62,12 @@ label{
  /* font-family: "Courier New", monospace;*/
   font-weight: lighter;  
   font-size: 55px;
-  padding-top: 0px;
+  padding-top: 10px;
+    
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 0px;
+  border-color: #85c2ff00;
 
 }
 
@@ -120,8 +125,8 @@ label{
 }
 
 .dropbtn {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #31313100;
+  color: rgb(255, 255, 255);
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -166,51 +171,47 @@ label{
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #ffffff4f;
 }
 
 
 button {
-  border-radius: 0px;
-  border: none;
+  
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 3px;
+  border-color: #ffffff;
   padding: 0!important;
   /*optional*/
   font-family: arial;
-  font-size: 17px;
+  font-size: 15px;
   color: #ffffff;
-  background-color: #4385ff98;
-  height: 30px;
-  width: 70px;
+  background-color: #3050a8;
+
+  height: 45px;
+  width: 100px;
   cursor: pointer;
   margin-left: 10px;
 }
 
 
 button:hover {
-  background-color: #e0a606; /* Green */
+  background-color: #ffbb00; /* Green */
   color: white;
   border-color: rgba(255, 255, 255);
 
 }
 
-.buttonPrint {
-  border-radius: 0px;
-  border: none;
-  padding: 0!important;
-  /*optional*/
-  font-family: arial;
-  font-size: 17px;
-  color: #708bff;
-  background-color: #ffff;
-  height: 60px;
-  width: 90px;
-  cursor: pointer;
-  margin-left: 10px;
+.back {
+
+  color: #ffffff;
+  background-color: #3050a8;
+
   
   border-style: solid;
   border-radius: 5px;
   border-width: 3px;
-  border-color: #85c2ff98;
+  border-color: #ffffff;
 
 }
 

@@ -5,13 +5,13 @@
  
     <span>{{student.studentID}} {{student.fName}}  {{student.lName}} </span>
 
-    <router-link :to="{ name: 'coursePlan', params: { studentID: student.studentID }}">          <button>Course Plan</button>
+    <router-link :to="{ name: 'coursePlan', params: { studentID: student.studentID }}"><button>Course Plan</button>
     </router-link>
 
-    <router-link :to="{ name: 'editStudent' , params: { studentID: student.studentID }}">          <button>Edit</button>
+    <router-link :to="{ name: 'editStudent' , params: { studentID: student.studentID }}"><button>Edit</button>
     </router-link>
 
-    <button v-on:click="deleteStudent()"><span>Delete</span></button>
+    <button v-on:click="deleteStudent()" class = "back button"><span>Delete</span></button>
     <br>
     
   </div>

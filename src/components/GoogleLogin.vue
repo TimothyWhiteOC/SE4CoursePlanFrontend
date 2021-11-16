@@ -59,15 +59,21 @@ export default {
 <style>
 
 .signIn{
-  width: 200px;
-  height: 150px;
+  width: 230px;
+  height: 140px;
+  background-color: rgb(27, 66, 139);
+  color: white;
+  font-size: 30px;
+  border-color: rgb(27, 66, 139);
+  
 }
 .signOut{
-  width: 200px;
-  height: 150px;
-  z-index: 100;
-/*  margin-top: -1000px;
-  margin-bottom: 100px;*/
+  width: 230px;
+  height: 140px;
+  background-color: rgb(27, 66, 139);
+  color: white;
+  font-size: 30px;
+  border-color: rgb(27, 66, 139);
 }
 </style>
 

@@ -45,7 +45,7 @@
         <br>
 
         <button type="submit">Submit</button>
-        <button v-if="isEdit" v-on:click= "cancel">Cancel</button>
+        <button v-if="isEdit" class = "back button" v-on:click= "cancel">Cancel</button>
       </form>
     </div>
   </div>

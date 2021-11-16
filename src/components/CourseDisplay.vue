@@ -8,10 +8,10 @@
     <span>{{course.courseNo}} {{course.name}} </span>
 
    <router-link v-if="permissions" :to="{ name: 'editCourse' , params: { courseNo: course.courseNo }}">
-      <button>edit</button>
+      <button class = "back button">Edit</button>
     </router-link> 
 
-    <button v-if="permissions" v-on:click="deleteCourse()"><span>delete</span></button>
+    <button v-if="permissions" v-on:click="deleteCourse()"><span>Delete</span></button>
     <br>
     <br>
   </div>
