@@ -1,6 +1,7 @@
 <template>
+  <div class ="topMenu">Course Plan</div>
+
   <div>
-    <drop-down-menu pageName="Course Plan"/>
     <div>
       <h2> {{student.fName}} {{student.lName}} Course Plan</h2>
       <button class = "buttonPrint button" v-on:click= "makePDF">Save PDF</button>
@@ -32,11 +33,10 @@ import StudentCourseServices from '@/services/StudentCourseServices.js';
 import MajorCourseServices from '@/services/MajorCourseServices.js';
 import StudentServices from '@/services/StudentServices.js';
 
-import DropDownMenu from '../components/DropDownMenu.vue'
 import CorPlanSemesterDisplay from '../components/CorPlanSemesterDisplay.vue';
 
 export default {
-  components: { DropDownMenu, CorPlanSemesterDisplay },
+  components: { CorPlanSemesterDisplay },
   props: ['studentID'],
   data() {
     return {

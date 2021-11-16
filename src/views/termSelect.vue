@@ -1,6 +1,6 @@
 
 <template>
-    <drop-down-menu pageName="Select a Term"/>
+      <div class ="topMenu">Select Term</div>
 
     <br><br>    <br><br>
     <label for = "semYear">Semester Year: &emsp;&emsp;</label>
@@ -22,11 +22,9 @@
 
 
 <script>
-import DropDownMenu from '../components/DropDownMenu.vue'
 
   export default {
   props: ['studentID'],
-  components: { DropDownMenu },
   data() {
     return {
         semester :

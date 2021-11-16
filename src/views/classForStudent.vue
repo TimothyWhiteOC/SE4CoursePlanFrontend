@@ -1,6 +1,6 @@
 <template>
+  <div class ="topMenu">Add a Course</div>
   <div>
-    <drop-down-menu pageName="Add a Course"/>
     <div>
      
       <input type = "text" v-model= "search" placeholder="Filter by course name &#x1F50E;&#xFE0E;	"/>
@@ -19,11 +19,10 @@
 import CourseServices from '@/services/CourseServices.js'
 import StudentCourseServices from "@/services/StudentCourseServices.js";
 import displayClassForStudent from '../components/displayClassForStudent.vue';
-import DropDownMenu from '../components/DropDownMenu.vue';
 
 
 export default {
-  components: { displayClassForStudent, DropDownMenu },
+  components: { displayClassForStudent},
     props: [
     'studentID',
     'semTerm',
