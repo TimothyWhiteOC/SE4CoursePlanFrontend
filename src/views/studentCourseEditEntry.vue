@@ -50,7 +50,7 @@
       <br>
 
       <button v-on:click= "submit" >Submit</button> 
-      <button v-on:click= "cancel">Cancel</button>
+      <button class = "back button" v-on:click= "cancel">Cancel</button>
 
       </div>   
 </template>
