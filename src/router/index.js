@@ -8,7 +8,6 @@ import listCourses from '../views/listCourses.vue'
 import listStudents from '../views/listStudents.vue'
 import listAdvisors from '../views/listAdvisors.vue'
 import coursePlan from '../views/coursePlan.vue'
-import login from '../views/loginPage.vue'
 import studentCourseEditEntry from '../views/studentCourseEditEntry.vue'
 import classForStudent from '../views/classForStudent.vue'
 
@@ -49,11 +48,6 @@ const routes = [
     name: 'editAdvisor',
     props: true,
     component: advisorEditEntry
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: login
   },
   {
     path: '/listCourses',

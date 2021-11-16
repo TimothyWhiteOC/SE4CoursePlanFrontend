@@ -34,7 +34,7 @@ export default {
       activeLinks: [],
       allLinksByRole: [
         {
-          link: 'login',
+          link: 'mainmenu',
           displayText: 'Home',
           roles: ['admin', 'advisor', 'student', 'none']
         },

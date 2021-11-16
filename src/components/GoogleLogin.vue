@@ -27,7 +27,7 @@ export default {
           .catch(error => {
             console.log('There was an error:', error.response)
           })
-        this.$forceUpdate();
+        //this.$forceUpdate();
         // use different method to force a reload of the page
         
       } catch (error) {
@@ -41,7 +41,7 @@ export default {
         await this.$gAuth.signOut();
         removeItem('token');
         removeItem('user');
-        this.$forceUpdate();
+        //this.$forceUpdate();
         this.$router.go(0);
       } catch (error) {
         console.error(error);
