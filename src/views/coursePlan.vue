@@ -151,7 +151,6 @@ export default {
       
     },
     editCourse(currentCourse){
-      console.log("Edit: " + currentCourse);
       this.$router.push({ name: 'studentCourseEditEntry', params: {studentID: this.studentID, courseNo: currentCourse} });
     },
     // may need to install jspdf, autotable

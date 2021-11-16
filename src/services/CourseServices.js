@@ -11,7 +11,6 @@ export default {
     return apiClient.get("/courses/" + courseNo);
   },
   getCoursesBySemester(term) {
-    console.log("hrelp");
     return apiClient.get("/courses/semester/" + term);
   },
   deleteCourse(courseNo) {

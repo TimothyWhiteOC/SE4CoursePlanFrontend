@@ -17,6 +17,8 @@
       </div>
     </div>
     <button class = "submit" v-on:click="submit()">Submit</button>
+    <router-link :to="{ name: 'coursePlan', params: { studentID: studentID }}">          <button>Cancel</button>
+    </router-link>
   </div>
 </template>
 
@@ -50,7 +52,7 @@ import DropDownMenu from '../components/DropDownMenu.vue'
         this.semester.semTerm = "SP";
       },
       submit(){
-        this.$router.push({ name: 'classForStudent' , params: {studentID: this.studentID,  semTerm: this.semester.semTerm, semYear: this.semester.semYear}})
+        this.$router.push({ name: 'classForStudent' , params: {studentID: this.studentID,  semTerm: this.semester.semTerm, semYear: this.semester.semYear }})
       }
     }
   }
